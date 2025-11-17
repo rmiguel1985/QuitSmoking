@@ -1,35 +1,71 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# QuitSmoking
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![Kotlin](https://img.shields.io/badge/Kotlin-Compose_Multiplatform-orange) ![Platforms](https://img.shields.io/badge/Platforms-Android%20%7C%20iOS%20%7C%20Tablet%2FiPad-lightgrey)
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+**QuitSmoking** is an **open-source Compose Multiplatform app** that helps you **quit smoking and stay smoke-free**.  
+Track your progress, visualize your savings, and regain your health — all in one ad-free, privacy-respecting app.
 
-* [/iosApp](./iosApp/iosApp) contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
 
-### Build and Run Android Application
+## What is QuitSmoking?
 
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:assembleDebug
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:assembleDebug
-  ```
+**QuitSmoking** is built with **Kotlin and Compose Multiplatform**, offering a smooth and consistent experience across  
+**Android and iOS**, including **full support for tablets and iPads**.
 
-### Build and Run iOS Application
+Whether on your phone or tablet, QuitSmoking provides an elegant, responsive interface to help you stay focused  
+on your journey toward a healthier, smoke-free life.
 
-To build and run the development version of the iOS app, use the run configuration from the run widget
-in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+
+## Features
+
+- **Track Your Progress:** see exactly how long you've been smoke-free, down to the minute. Watch your non-smoked cigarettes count grow.
+- **Monitor Your Health:** witness your body recover with milestones for improved blood pressure, carbon monoxide levels, and sense of smell.
+- **Calculate Your Savings:** enter your smoke habits and costs to see the real-time financial impact. Visualizing saved money is powerful motivation.
+- **Stay Motivated:** our mission is to help you quit for good by offering motivation and tracking your health recovery progress.
+- **Open Source & Native:** 100% written in **Kotlin**, built with **Compose Multiplatform**.
+- **Privacy-First:** All data is stored locally — no accounts, no tracking, no ads.
+
+
+
+## Medical Disclaimer
+
+**QuitSmoking is intended for motivational and tracking purposes only.**
+
+It is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.
+
+Never disregard professional medical advice or delay in seeking it. If you have any questions, contact a healthcare professional; the information provided by this application is for guidance only.
+
+
+## Open Source
+
+- Licensed under **GPL-3.0**, meaning you can use, study, modify, and share it freely.
+- Copyleft ensures it stays open.
+- All data is stored **locally** — nothing leaves your device.
+- **No advertising**, and **all features are completely free**.
+
+
+## Contributing
+
+- Submit a **[Pull Request](https://help.github.com/articles/about-pull-requests/)** to add new features or improvements.
+- Or **[Donate via PayPal](https://www.paypal.com/donate/?business=FLH8XTY65RFKN&no_recurring=0&item_name=QuitSmoking+is+maintained+by+a+single+developer.+Donations+help+cover+development+costs%2C+continued+updates+and+improvements.&currency_code=EUR)** to support development and maintenance.
+
+
+## Download
+
+Coming soon on:
+- **[Google Play](#)**
+- **[App Store](#)**
+- Or download directly from [GitHub Releases](#)
+
+
+## License
+
+Copyright © 2025 [Ruben Miguel Corcoba](https://github.com/rmiguel1985)
+
+This program is free software: you can redistribute it and/or modify it  
+under the terms of the **GNU General Public License v3.0** or later.
+
+See the full license in [LICENSE](LICENSE) or at <https://www.gnu.org/licenses/>.
 
 ---
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+*Inspired by an earlier, now-archived project by **scoute-dich**.  
+[View archived project](https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/scoute-dich/QuitSmoking)*
