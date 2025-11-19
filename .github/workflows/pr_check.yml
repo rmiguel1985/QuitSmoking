@@ -30,16 +30,22 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      # --- 1. Run Tests ---
+      # --- 1. Create Build Config Variables ---
+      - name: Create local.properties
+        run: |
+         echo "isDebugBuild=true" >> local.properties
+         echo "appVersion=1.0.0" >> local.properties
+
+      # --- 2. Run Tests ---
       # Use './gradlew check' to run ALL tests for all targets (slower but safer).
       - name: Run Unit Tests
         run: ./gradlew check
 
-      # --- 2. Check Android Build ---
+      # --- 3. Check Android Build ---
       - name: Build Android Debug APK
         run: ./gradlew assembleDebug
 
-      # --- 2.1 Upload Android APK ---
+      # --- 3.1 Upload Android APK ---
       - name: Upload Android APK
         uses: actions/upload-artifact@v4
         with:
@@ -47,18 +53,18 @@ jobs:
           path: composeApp/build/outputs/apk/debug/composeApp-debug.apk
           retention-days: 5
 
-      # --- 3. Check Android Lint ---
+      # --- 4. Check Android Lint ---
       - name: Run Android Lint
         run: ./gradlew lintDebug
 
-      # --- 4. Check iOS Build ---
+      # --- 5. Check iOS Build ---
       # We use 'linkDebugFrameworkIosSimulatorArm64' instead of 'embedAndSign...'
       # because 'embedAndSign' requires Xcode environment variables ($ARCHS, $CONFIGURATION, etc.)
       # which are not present when running directly from Gradle in CI.
       - name: Verify iOS Framework Build
         run: ./gradlew :composeApp:linkDebugFrameworkIosSimulatorArm64
 
-      # --- Upload Results on Failure ---
+      # --- 5. Upload Results on Failure ---
       - name: Upload Test Results
         if: failure()
         uses: actions/upload-artifact@v4
