@@ -33,7 +33,7 @@ jobs:
       # --- 1. Run Tests ---
       # Use './gradlew check' to run ALL tests for all targets (slower but safer).
       - name: Run Unit Tests
-        run: ./gradlew testDebugUnitTest iosSimulatorArm64Test
+        run: ./gradlew check
 
       # --- 2. Check Android Build ---
       - name: Build Android Debug APK
