@@ -6,6 +6,7 @@ import kotlin.apply
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.androidApplication)
 
     alias(libs.plugins.composeMultiplatform)
