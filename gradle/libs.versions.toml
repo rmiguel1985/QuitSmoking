@@ -114,3 +114,6 @@ buildkonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildkonfig"
 
 # Mokkery
 mokkery = { id = "dev.mokkery", version.ref = "mokkery" }
+
+# Serialization
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
