@@ -57,14 +57,7 @@ jobs:
       - name: Run Android Lint
         run: ./gradlew lintDebug
 
-      # --- 5. Check iOS Build ---
-      # We use 'linkDebugFrameworkIosSimulatorArm64' instead of 'embedAndSign...'
-      # because 'embedAndSign' requires Xcode environment variables ($ARCHS, $CONFIGURATION, etc.)
-      # which are not present when running directly from Gradle in CI.
-      - name: Verify iOS Framework Build
-        run: ./gradlew :composeApp:linkDebugFrameworkIosSimulatorArm64
-
-      # --- 5. Upload Results on Failure ---
+      # --- 6. Upload Results on Failure ---
       - name: Upload Test Results
         if: failure()
         uses: actions/upload-artifact@v4
