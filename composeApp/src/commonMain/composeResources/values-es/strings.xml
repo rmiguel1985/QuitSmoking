@@ -1,0 +1,7 @@
+<resources>
+    <!-- Bottom Menu -->
+    <string name="tab_overview">Resumen</string>
+    <string name="tab_health">Salud</string>
+    <string name="tab_settings">Configuración</string>
+    <string name="tab_about">Acerca de</string>
+</resources>
