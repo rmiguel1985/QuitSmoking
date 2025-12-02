@@ -69,8 +69,14 @@ kotlin {
             implementation(libs.androidx.datastore)
             implementation(libs.androidx.datastore.preferences)
 
+            // Coroutines
+            implementation(libs.kotlinx.coroutines.test)
+
             // Navigation
             implementation(libs.androidx.navigation.compose)
+
+            // Turbine
+            implementation(libs.turbine)
 
             //Material Design 3
             implementation(compose.material3)
@@ -81,6 +87,7 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.junit)
         }
     }
 }

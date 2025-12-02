@@ -45,6 +45,12 @@ buildkonfig = "0.17.1"
 # Mokkery
 mokkery = '2.10.1'
 
+# Coroutines
+kotlinx-coroutines = "1.10.2"
+
+# Turbine
+turbine = "1.2.1"
+
 [libraries]
 # Kotlin
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -85,6 +91,12 @@ koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", versi
 # Data Store
 androidx-datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+
+# Coroutines
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
+
+# Turbine
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
 [plugins]
 # Core Plugins
