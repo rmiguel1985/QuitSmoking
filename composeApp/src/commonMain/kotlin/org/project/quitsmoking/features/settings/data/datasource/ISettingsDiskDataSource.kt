@@ -1,8 +1,8 @@
-package org.project.quitsmoking.common.datasource
+package org.project.quitsmoking.features.settings.data.datasource
 
 import kotlinx.coroutines.flow.Flow
 
-interface IQuitSmokingDiskDataSource {
+interface ISettingsDiskDataSource {
     suspend fun setQuitDate(date: Long): Result<Unit>
     suspend fun setQuitTime(time: String): Result<Unit>
     suspend fun setDailyCigaretteCount(numberOfCigarettes: Int): Result<Unit>

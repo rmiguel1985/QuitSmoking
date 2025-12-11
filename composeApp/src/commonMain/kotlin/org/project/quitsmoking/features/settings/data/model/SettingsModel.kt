@@ -1,6 +1,6 @@
-package org.project.quitsmoking.common.model
+package org.project.quitsmoking.features.settings.data.model
 
-data class QuitSmokingSettingsModel(
+data class SettingsModel(
     val quitTimestamp: Long,
     val quitTime: String,
     val dailyCigaretteCount: Int,

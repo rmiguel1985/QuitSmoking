@@ -1,11 +1,11 @@
-package org.project.quitsmoking.common.repository
+package org.project.quitsmoking.features.settings.data.repository
 
 import kotlinx.coroutines.flow.Flow
-import org.project.quitsmoking.common.model.QuitSmokingSettingsModel
+import org.project.quitsmoking.features.settings.data.model.SettingsModel
 
-interface IQuitSmokingRepository {
+interface ISettingsRepository {
     // The Single Source of Truth
-    val settings: Flow<QuitSmokingSettingsModel>
+    val settings: Flow<SettingsModel>
 
     // Setters can remain granular for individual updates
     suspend fun updateQuitDate(date: Long): Result<Unit>
