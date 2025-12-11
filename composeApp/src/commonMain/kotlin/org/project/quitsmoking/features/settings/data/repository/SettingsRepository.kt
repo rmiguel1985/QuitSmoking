@@ -1,21 +1,21 @@
-package org.project.quitsmoking.common.repository
+package org.project.quitsmoking.features.settings.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-import org.project.quitsmoking.common.datasource.IQuitSmokingDiskDataSource
-import org.project.quitsmoking.common.model.QuitSmokingSettingsModel
+import org.project.quitsmoking.features.settings.data.datasource.ISettingsDiskDataSource
+import org.project.quitsmoking.features.settings.data.model.SettingsModel
 
-class QuitSmokingRepository(private val diskDataSource: IQuitSmokingDiskDataSource) :
-    IQuitSmokingRepository {
+class SettingsRepository(private val diskDataSource: ISettingsDiskDataSource) :
+    ISettingsRepository {
 
-    override val settings: Flow<QuitSmokingSettingsModel> = combine(
+    override val settings: Flow<SettingsModel> = combine(
         diskDataSource.getQuitDate(),
         diskDataSource.getQuitTime(),
         diskDataSource.getDailyCigaretteCount(),
         diskDataSource.getMinutesPerCigarette(),
         diskDataSource.getCostPerCigarette()
     ) { date, time, count, minutes, cost ->
-        QuitSmokingSettingsModel(
+        SettingsModel(
             quitTimestamp = date,
             quitTime = time,
             dailyCigaretteCount = count,

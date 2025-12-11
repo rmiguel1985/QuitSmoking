@@ -1,4 +1,4 @@
-package org.project.quitsmoking.common.datasource
+package org.project.quitsmoking.features.settings.data.datasource
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -15,8 +15,8 @@ import org.project.quitsmoking.utils.PreferenceKeys.STOP_DATE
 import org.project.quitsmoking.utils.PreferenceKeys.STOP_TIME
 import org.project.quitsmoking.utils.PreferenceKeys.TIME_SPENT_PER_CIGARETTE
 
-class QuitSmokingDiskDataSource(private val dataStore: DataStore<Preferences>) :
-    IQuitSmokingDiskDataSource {
+class SettingsDiskDataSource(private val dataStore: DataStore<Preferences>) :
+    ISettingsDiskDataSource {
     override fun getQuitDate(): Flow<Long> = dataStore.data.map { preferences ->
         preferences[longPreferencesKey(STOP_DATE)] ?: 0
     }

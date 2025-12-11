@@ -4,4 +4,39 @@
     <string name="tab_health">Health</string>
     <string name="tab_settings">Settings</string>
     <string name="tab_about">About</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title_text">Settings</string>
+
+    <string name="settings_date_title">Date</string>
+    <string name="settings_date_description">When did you stop smoking? Please enter date.</string>
+    <string name="settings_time_title">Time</string>
+    <string name="settings_time_description">When did you stop smoking? Please enter time.</string>
+    <string name="settings_smoke_title">Smoke habits</string>
+    <string name="settings_smoke_description">Enter the number of smoked cigarettes per day and the time it took to smoke one cigarette.</string>
+    <string name="settings_costs_title">Costs</string>
+    <string name="settings_costs_description">Costs of a single cigarette. This is used to calculate the saved money since quitting.</string>
+    <string name="settings_error_saving_costs">Error saving costs</string>
+    <string name="settings_error_saving_cigarettes">Error saving number of cigarettes</string>
+    <string name="settings_error_saving_time">Error saving time</string>
+    <string name="settings_error_saving_date">Error saving date</string>
+
+    <!-- Costs Input Dialog -->
+    <string name="costs_dialog_title_text">Costs</string>
+    <string name="costs_dialog_label_text">Cigarette Cost</string>
+    <string name="costs_dialog_error_text">Please enter a number grater than 0</string>
+
+    <!-- Smoking Habits Input Dialog -->
+    <string name="smoking_habits_dialog_title_text">Smoking Habits</string>
+    <string name="smoking_habits_dialog_cigarette_label_text">Cigarettes per day</string>
+    <string name="smoking_habits_dialog_minutes_label_text">Minutes per cigarette</string>
+    <string name="smoking_habits_dialog_error_text">Please enter numbers grater than 0</string>
+
+    <!-- Time Picker -->
+    <string name="time_picker_title_text">Select a Time</string>
+
+    <!-- Common -->
+    <string name="common_ok">OK</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_save">Save</string>
 </resources>
