@@ -89,6 +89,7 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
             implementation(libs.junit)
+            implementation(libs.koin.test)
         }
     }
 }
