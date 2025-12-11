@@ -4,4 +4,39 @@
     <string name="tab_health">Salut</string>
     <string name="tab_settings">Configuració</string>
     <string name="tab_about">Quant a</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title_text">Configuració</string>
+
+    <string name="settings_date_title">Data</string>
+    <string name="settings_date_description">Quan vas deixar de fumar? Introdueix la data.</string>
+    <string name="settings_time_title">Hora</string>
+    <string name="settings_time_description">Quan vas deixar de fumar? Introdueix l’hora.</string>
+    <string name="settings_smoke_title">Hàbits de consum</string>
+    <string name="settings_smoke_description">Introdueix el nombre de cigarrets fumats per dia i el temps que trigaves a fumar-ne un.</string>
+    <string name="settings_costs_title">Costos</string>
+    <string name="settings_costs_description">Cost d’un sol cigarret. Aquesta dada s’utilitza per calcular els diners estalviats des que vas deixar de fumar.</string>
+    <string name="settings_error_saving_costs">Error en desar els costos</string>
+    <string name="settings_error_saving_cigarettes">Error en desar el nombre de cigarrets</string>
+    <string name="settings_error_saving_time">Error en desar l'hora</string>
+    <string name="settings_error_saving_date">Error en desar la data</string>
+
+    <!-- Costs Input Dialog -->
+    <string name="costs_dialog_title_text">Costos</string>
+    <string name="costs_dialog_label_text">Cost del cigarret</string>
+    <string name="costs_dialog_error_text">Introdueix un número més gran que 0</string>
+
+    <!-- Smoking Habits Input Dialog -->
+    <string name="smoking_habits_dialog_title_text">Hàbits de consum</string>
+    <string name="smoking_habits_dialog_cigarette_label_text">Cigarrets per dia</string>
+    <string name="smoking_habits_dialog_minutes_label_text">Minuts per cigarret</string>
+    <string name="smoking_habits_dialog_error_text">Introdueix números més grans que 0</string>
+
+    <!-- Time Picker -->
+    <string name="time_picker_title_text">Selecciona una hora</string>
+
+    <!-- Common -->
+    <string name="common_ok">D’acord</string>
+    <string name="common_cancel">Cancel·la</string>
+    <string name="common_save">Desa</string>
 </resources>
