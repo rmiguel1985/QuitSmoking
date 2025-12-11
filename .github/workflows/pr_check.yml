@@ -1,4 +1,4 @@
-name: PR Check (Android & iOS)
+name: PR Check (Android)
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-and-check:
-    name: Build & Verify (Android/iOS)
+    name: Build & Verify (Android)
     runs-on: macos-latest
     timeout-minutes: 45
 
@@ -37,7 +37,6 @@ jobs:
          echo "appVersion=1.0.0" >> local.properties
 
       # --- 2. Run Tests ---
-      # Use './gradlew check' to run ALL tests for all targets (slower but safer).
       - name: Run Unit Tests
         run: ./gradlew testDebugUnitTest
 
