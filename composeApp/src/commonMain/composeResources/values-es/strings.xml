@@ -21,6 +21,51 @@
     <string name="settings_error_saving_time">Error al guardar la hora</string>
     <string name="settings_error_saving_date">Error al guardar la fecha</string>
 
+    <!-- Health Screen -->
+    <string name="health_title_text">Salud</string>
+
+    <string name="health_goal_achieved">¡Felicidades, lo lograste! (%1$s%)</string>
+    <string name="health_goal_in_progress">En progreso (%1$s%)</string>
+
+    <string name="health_blood_pressure_title">Presión arterial</string>
+    <string name="health_blood_pressure_description">La presión arterial, la temperatura corporal y el ritmo cardíaco vuelven a la normalidad. (20 minutos)</string>
+
+    <string name="health_carbon_monoxide_title">Monóxido de carbono</string>
+    <string name="health_carbon_monoxide_description">Desaparece el aliento de fumador. El gas venenoso monóxido de carbono bloquea alrededor del 10% de los glóbulos rojos de un fumador. Estas células ahora vuelven a estar disponibles para el oxígeno. (8 horas)</string>
+
+    <string name="health_heart_attack_title">Infarto</string>
+    <string name="health_heart_attack_description">El riesgo de muerte cardíaca súbita disminuye. (1 día)</string>
+
+    <string name="health_sense_of_smell_title">Olfato</string>
+    <string name="health_sense_of_smell_description">El sentido del olfato y las papilas gustativas se vuelven más sensibles; el olfato y el gusto se refinan. (2 días)</string>
+
+    <string name="health_breathing_title">Respiración</string>
+    <string name="health_breathing_description">Respirar se vuelve más fácil. (3 días)</string>
+
+    <string name="health_nicotine_withdrawal_title">Abstinencia de nicotina</string>
+    <string name="health_nicotine_withdrawal_description">La abstinencia física de la nicotina ha terminado. (1 semana)</string>
+
+    <string name="health_capacity_title">Capacidad</string>
+    <string name="health_capacity_description">Mejora toda la circulación sanguínea. La capacidad pulmonar aumenta hasta un 30%, permitiendo absorber más oxígeno. Esto incrementa el rendimiento físico. (3 meses)</string>
+
+    <string name="health_lung_hairs_title">Cilios pulmonares</string>
+    <string name="health_lung_hairs_description">Los pequeños cilios de los pulmones vuelven a crecer; la tos del fumador desaparece. El cansancio y la falta de aire mejoran progresivamente. (9 meses)</string>
+
+    <string name="health_coronary_arteries_title">Arterias coronarias</string>
+    <string name="health_coronary_arteries_description">El riesgo de enfermedades de las arterias coronarias se reduce a la mitad. (1 año)</string>
+
+    <string name="health_heart_attack_2y_title">Infarto</string>
+    <string name="health_heart_attack_2y_description">El riesgo de infarto disminuye significativamente. (2 años)</string>
+
+    <string name="health_stroke_title">Ictus</string>
+    <string name="health_stroke_description">El riesgo de sufrir un ictus o morir de cáncer de pulmón es mucho menor que antes. También se reduce el riesgo de cánceres de boca. (5 años)</string>
+
+    <string name="health_lung_cancer_title">Cáncer de pulmón</string>
+    <string name="health_lung_cancer_description">El riesgo de cáncer de pulmón es similar al de una persona no fumadora. Los pulmones casi se han recuperado por completo y las células precancerosas son reemplazadas por células sanas. (10 años)</string>
+
+    <string name="health_heart_attack_15y_title">Infarto</string>
+    <string name="health_heart_attack_15y_description">El riesgo de infarto es casi igual al de una persona no fumadora. (15 años)</string>
+
     <!-- Costs Input Dialog -->
     <string name="costs_dialog_title_text">Costes</string>
     <string name="costs_dialog_label_text">Coste del cigarrillo</string>

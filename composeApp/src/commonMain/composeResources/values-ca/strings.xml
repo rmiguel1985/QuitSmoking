@@ -21,6 +21,51 @@
     <string name="settings_error_saving_time">Error en desar l'hora</string>
     <string name="settings_error_saving_date">Error en desar la data</string>
 
+    <!-- Health Screen -->
+    <string name="health_title_text">Salut</string>
+
+    <string name="health_goal_achieved">Felicitats — ho has aconseguit! (%1$s%)</string>
+    <string name="health_goal_in_progress">En progrés (%1$s%)</string>
+
+    <string name="health_blood_pressure_title">Pressió arterial</string>
+    <string name="health_blood_pressure_description">La pressió arterial, la temperatura corporal i el ritme cardíac tornen a la normalitat. (20 minuts)</string>
+
+    <string name="health_carbon_monoxide_title">Monòxid de carboni</string>
+    <string name="health_carbon_monoxide_description">L’alè de fumador desapareix. El gas verinós monòxid de carboni bloquejava aproximadament un 10% dels glòbuls vermells. Ara aquestes cèl·lules tornen a estar disponibles per a l’oxigen. (8 hores)</string>
+
+    <string name="health_heart_attack_title">Infart</string>
+    <string name="health_heart_attack_description">El risc de mort cardíaca sobtada disminueix. (1 dia)</string>
+
+    <string name="health_sense_of_smell_title">Olfacte</string>
+    <string name="health_sense_of_smell_description">L’olfacte i les papil·les gustatives es tornen més sensibles; l’olfacte i el gust es refinen. (2 dies)</string>
+
+    <string name="health_breathing_title">Respiració</string>
+    <string name="health_breathing_description">Respirar esdevé més fàcil. (3 dies)</string>
+
+    <string name="health_nicotine_withdrawal_title">Abstinència de nicotina</string>
+    <string name="health_nicotine_withdrawal_description">L’abstinència física de nicotina s’ha completat. (1 setmana)</string>
+
+    <string name="health_capacity_title">Capacitat</string>
+    <string name="health_capacity_description">Millora tota la circulació sanguínia. La capacitat pulmonar augmenta fins a un 30%, permetent absorbir més oxigen. Això incrementa el rendiment físic. (3 mesos)</string>
+
+    <string name="health_lung_hairs_title">Cilis pulmonars</string>
+    <string name="health_lung_hairs_description">Els petits pèls dels pulmons tornen a créixer; la tos de fumador desapareix. El cansament i la falta d’alè milloren progressivament. (9 mesos)</string>
+
+    <string name="health_coronary_arteries_title">Artèries coronàries</string>
+    <string name="health_coronary_arteries_description">El risc de malalties de les artèries coronàries es redueix a la meitat. (1 any)</string>
+
+    <string name="health_heart_attack_2y_title">Infart</string>
+    <string name="health_heart_attack_2y_description">El risc d’infart disminueix considerablement. (2 anys)</string>
+
+    <string name="health_stroke_title">Ictus</string>
+    <string name="health_stroke_description">El risc de patir un ictus o morir de càncer de pulmó és molt més baix que abans. També es redueix el risc de càncers bucals. (5 anys)</string>
+
+    <string name="health_lung_cancer_title">Càncer de pulmó</string>
+    <string name="health_lung_cancer_description">El risc de càncer de pulmó és igual al d’una persona no fumadora. Els pulmons gairebé s’han recuperat completament, i les cèl·lules precanceroses són reemplaçades per cèl·lules sanes. (10 anys)</string>
+
+    <string name="health_heart_attack_15y_title">Infart</string>
+    <string name="health_heart_attack_15y_description">El risc d’infart és gairebé igual al d’una persona no fumadora. (15 anys)</string>
+
     <!-- Costs Input Dialog -->
     <string name="costs_dialog_title_text">Costos</string>
     <string name="costs_dialog_label_text">Cost del cigarret</string>
