@@ -1,5 +1,5 @@
 # QuitSmoking
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![Kotlin](https://img.shields.io/badge/Kotlin-Compose_Multiplatform-orange) ![Platforms](https://img.shields.io/badge/Platforms-Android%20%7C%20iOS%20%7C%20Tablet%2FiPad-lightgrey)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![Kotlin](https://img.shields.io/badge/Kotlin-Compose_Multiplatform-orange) ![Platforms](https://img.shields.io/badge/Platforms-Android%20%7C%20iOS%20%7C%20Tablet%2FiPad-lightgrey) ![PR Check (Android)](https://github.com/rmiguel1985/QuitSmoking/actions/workflows/pr_check.yml/badge.svg) ![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/rmiguel1985/QuitSmoking/badges/coverage.json)
 
 **QuitSmoking** is an **open-source Compose Multiplatform app** that helps you **quit smoking and stay smoke-free**.  
 Track your progress, visualize your savings, and regain your health — all in one ad-free, privacy-respecting app.
