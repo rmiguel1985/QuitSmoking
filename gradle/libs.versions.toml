@@ -51,6 +51,9 @@ kotlinx-coroutines = "1.10.2"
 # Turbine
 turbine = "1.2.1"
 
+# Kover
+kover = "0.9.4"
+
 [libraries]
 # Kotlin
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -118,3 +121,6 @@ mokkery = { id = "dev.mokkery", version.ref = "mokkery" }
 
 # Serialization
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+# Kover
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }

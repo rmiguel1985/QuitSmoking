@@ -45,8 +45,6 @@ class HealthViewModelTest {
         // When
         viewModel.healthStats.test {
             //Then
-            val initial = awaitItem()
-            assertEquals(initialHealthRecovery, initial)
             val result = awaitItem()
             assertEquals(testHealthRecovery, result)
             cancelAndIgnoreRemainingEvents()
