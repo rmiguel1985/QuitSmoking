@@ -8,7 +8,7 @@ class SettingsUseCase(private val repository: ISettingsRepository) : ISettingsUs
     override fun getSettings(): Flow<SettingsModel> = repository.settings
 
     override suspend fun setDate(date: Long): Result<Unit> =
-        repository.updateQuitDate(date).onSuccess {  }
+        repository.updateQuitDate(date)
 
     override suspend fun setTime(time: String): Result<Unit> =
         repository.updateQuitTime(time)
