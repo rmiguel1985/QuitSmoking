@@ -15,7 +15,7 @@ plugins {
 
     alias(libs.plugins.buildkonfig)
     alias(libs.plugins.mokkery)
-    id("org.jetbrains.kotlinx.kover") version "0.9.4"
+    alias(libs.plugins.kover)
 }
 
 kotlin {
