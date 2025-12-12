@@ -21,6 +21,51 @@
     <string name="settings_error_saving_time">Error saving time</string>
     <string name="settings_error_saving_date">Error saving date</string>
 
+    <!-- Health Screen -->
+    <string name="health_title_text">Health</string>
+
+    <string name="health_goal_achieved">Congratulations - you did it! (%1$s%)</string>
+    <string name="health_goal_in_progress">In progress (%1$s%)</string>
+
+    <string name="health_blood_pressure_title">Blood pressure</string>
+    <string name="health_blood_pressure_description">Blood pressure, body temperature and heart rate return to normal. (20 minutes)</string>
+
+    <string name="health_carbon_monoxide_title">Carbon monoxide</string>
+    <string name="health_carbon_monoxide_description">The smoker breath disappears. The poisonous gas carbon monoxide blocks for a smoker about 10% of the red blood cells. These cells are now available again for oxygen. (8 hours)</string>
+
+    <string name="health_heart_attack_title">Heart attack</string>
+    <string name="health_heart_attack_description">The risk of sudden cardiac death decreases. (1 day)</string>
+
+    <string name="health_sense_of_smell_title">Sense of smell</string>
+    <string name="health_sense_of_smell_description">The sense of smell and the taste buds becoming more sensitive; smelling and taste is refined. (2 days)</string>
+
+    <string name="health_breathing_title">Breathing</string>
+    <string name="health_breathing_description">Breathing becomes easier. (3 days)</string>
+
+    <string name="health_nicotine_withdrawal_title">Nicotine withdrawal</string>
+    <string name="health_nicotine_withdrawal_description">The physical nicotine withdrawal is made. (1 week)</string>
+
+    <string name="health_capacity_title">Capacity</string>
+    <string name="health_capacity_description">The entire blood circulation improves. The increased lung capacity by up to 30 , they can absorb more oxygen again. This increases the physical Performance. (3 months)</string>
+
+    <string name="health_lung_hairs_title">Lung hairs</string>
+    <string name="health_lung_hairs_description">By now, the fine hairs are regrow in the lungs, the smokers cough disappears. Exhaustion and shortness of breath improve progressively. (9 months)</string>
+
+    <string name="health_coronary_arteries_title">Coronary arteries</string>
+    <string name="health_coronary_arteries_description">The risk of diseases of the coronary vessels is reduced by half. (1 year)</string>
+
+    <string name="health_heart_attack_2y_title">Heart attack</string>
+    <string name="health_heart_attack_2y_description">The risk of heart attack drops significantly. (2 years)</string>
+
+    <string name="health_stroke_title">Stroke</string>
+    <string name="health_stroke_description">The risk of having a stroke or a lung cancer die, is substantially lower than earlier. Also the risk of cancers of the mouth is reduced. (5 years)</string>
+
+    <string name="health_lung_cancer_title">Lung cancer</string>
+    <string name="health_lung_cancer_description">The lung cancer risk is as high as a Non smoking. The lung has almost fully recovered, pre-cancerous cells are replaced by healthy cells. (10 years)</string>
+
+    <string name="health_heart_attack_15y_title">Heart attack</string>
+    <string name="health_heart_attack_15y_description">The risk of heart attack is barely higher than in a Non smoking. (15 years)</string>
+
     <!-- Costs Input Dialog -->
     <string name="costs_dialog_title_text">Costs</string>
     <string name="costs_dialog_label_text">Cigarette Cost</string>

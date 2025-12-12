@@ -11,49 +11,49 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.project.quitsmoking.utils.PreferenceKeys.CIGARETTES_PER_DAY
 import org.project.quitsmoking.utils.PreferenceKeys.COST_PER_CIGARETTE
-import org.project.quitsmoking.utils.PreferenceKeys.STOP_DATE
+import org.project.quitsmoking.utils.PreferenceKeys.MINUTES_PER_CIGARETTE
+import org.project.quitsmoking.utils.PreferenceKeys.STOP_DATE_TIMESTAMP
 import org.project.quitsmoking.utils.PreferenceKeys.STOP_TIME
-import org.project.quitsmoking.utils.PreferenceKeys.TIME_SPENT_PER_CIGARETTE
 
 class SettingsDiskDataSource(private val dataStore: DataStore<Preferences>) :
     ISettingsDiskDataSource {
     override fun getQuitDate(): Flow<Long> = dataStore.data.map { preferences ->
-        preferences[longPreferencesKey(STOP_DATE)] ?: 0
+        preferences[STOP_DATE_TIMESTAMP] ?: 0
     }
 
     override fun getQuitTime(): Flow<String> = dataStore.data.map { preferences ->
-        preferences[stringPreferencesKey(STOP_TIME)] ?: ""
+        preferences[STOP_TIME] ?: ""
     }
 
     override fun getDailyCigaretteCount(): Flow<Int> = dataStore.data.map { preferences ->
-        preferences[intPreferencesKey(CIGARETTES_PER_DAY)] ?: 0
+        preferences[CIGARETTES_PER_DAY] ?: 0
     }
 
     override fun getMinutesPerCigarette(): Flow<Int> = dataStore.data.map { preferences ->
-        preferences[intPreferencesKey(TIME_SPENT_PER_CIGARETTE)] ?: 0
+        preferences[MINUTES_PER_CIGARETTE] ?: 0
     }
 
     override fun getCostPerCigarette(): Flow<Double> = dataStore.data.map { preferences ->
-        preferences[doublePreferencesKey(COST_PER_CIGARETTE)] ?: 0.0
+        preferences[COST_PER_CIGARETTE] ?: 0.0
     }
 
     override suspend fun setQuitDate(date: Long): Result<Unit> = runCatching {
         dataStore.edit { preferences ->
-            preferences[longPreferencesKey(STOP_DATE)] = date
+            preferences[STOP_DATE_TIMESTAMP] = date
         }
 
     }
 
     override suspend fun setQuitTime(time: String): Result<Unit> = runCatching {
         dataStore.edit { preferences ->
-            preferences[stringPreferencesKey(STOP_TIME)] = time
+            preferences[STOP_TIME] = time
         }
     }
 
     override suspend fun setDailyCigaretteCount(numberOfCigarettes: Int): Result<Unit> =
         runCatching {
             dataStore.edit { preferences ->
-                preferences[intPreferencesKey(CIGARETTES_PER_DAY)] =
+                preferences[CIGARETTES_PER_DAY] =
                     numberOfCigarettes
             }
         }
@@ -61,14 +61,14 @@ class SettingsDiskDataSource(private val dataStore: DataStore<Preferences>) :
     override suspend fun setMinutesPerCigarette(minutesPerCigarette: Int): Result<Unit> =
         runCatching {
             dataStore.edit { preferences ->
-                preferences[intPreferencesKey(TIME_SPENT_PER_CIGARETTE)] =
+                preferences[MINUTES_PER_CIGARETTE] =
                     minutesPerCigarette
             }
         }
 
     override suspend fun setCigaretteCost(cost: Double): Result<Unit> = runCatching {
         dataStore.edit { preferences ->
-            preferences[doublePreferencesKey(COST_PER_CIGARETTE)] = cost
+            preferences[COST_PER_CIGARETTE] = cost
         }
     }
 }

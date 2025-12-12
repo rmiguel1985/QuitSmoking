@@ -7,7 +7,7 @@ android-targetSdk = "36"
 kotlin = "2.2.20"
 
 # DateTime
-kotlinx-datetime = "0.6.1"
+kotlinx-datetime = "0.7.1"
 
 # Compose Multiplatform
 composeMultiplatform = "1.9.1"
