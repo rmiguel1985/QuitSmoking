@@ -15,6 +15,7 @@ plugins {
 
     alias(libs.plugins.buildkonfig)
     alias(libs.plugins.mokkery)
+    id("org.jetbrains.kotlinx.kover") version "0.9.4"
 }
 
 kotlin {
@@ -148,5 +149,29 @@ buildkonfig {
             "appVersion",
             localProperties["appVersion"]?.toString(),
         )
+    }
+}
+
+kover {
+    reports {
+        filters {
+            excludes {
+                annotatedBy("androidx.compose.runtime.Composable")
+                classes(
+                    "org.project.quitsmoking.MainActivity",
+                    "org.project.quitsmoking.MainApplication",
+                    "*ComposableSingletons*",
+                    "*CreateDataStore*",
+                    "*Screen*",
+                    "*Item*",
+                    "*InitKoin*",
+                )
+                packages(
+                    "org.project.quitsmoking.ui",
+                    "quitsmoking.composeapp.generated.resources",
+                    "org.project.quitsmoking.utils"
+                )
+            }
+        }
     }
 }
