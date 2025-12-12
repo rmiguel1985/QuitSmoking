@@ -1,15 +1,20 @@
 package org.project.quitsmoking.utils
 
+import androidx.datastore.preferences.core.doublePreferencesKey
+import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
+
 // DataStore
 object PreferenceKeys {
+        val STOP_DATE_TIMESTAMP = longPreferencesKey("preferences_stop_date")
+        val STOP_TIME = stringPreferencesKey("preferences_stop_time")
+        val CIGARETTES_PER_DAY = intPreferencesKey("preferences_smoke_habit_cigarettes_per_day")
+        val MINUTES_PER_CIGARETTE = intPreferencesKey("preferences_smoke_habit_cigarettes_time")
+        val COST_PER_CIGARETTE = doublePreferencesKey("preferences_cigarette_cost")
+}
 
-    // DataStore
-    const val STOP_DATE = "preferences_stop_date"
-    const val STOP_TIME = "preferences_stop_time"
-    const val CIGARETTES_PER_DAY = "preferences_smoke_habit_cigarettes_per_day"
-    const val TIME_SPENT_PER_CIGARETTE = "preferences_smoke_habit_cigarettes_time"
-    const val COST_PER_CIGARETTE = "preferences_cigarette_cost"
-
+object HealthRecoveryConstants {
     // Health
     const val BLOOD_PRESSURE = 0.0139
     const val CARBON_MONOXIDE = 0.3333
