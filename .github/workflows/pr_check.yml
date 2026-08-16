@@ -10,7 +10,7 @@ on:
 jobs:
   build-and-check:
     name: Build & Verify (Android)
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 60
 
     steps:
@@ -67,7 +67,7 @@ jobs:
       # --- 6. Create Coverage Badge JSON ---
       - name: Create coverage badge JSON
         run: |
-            COVERAGE_FILE="composeApp/build/reports/kover/xml/report.xml"
+            COVERAGE_FILE="composeApp/build/reports/kover/report.xml"
             COVERED=$(xmllint --xpath 'string(//counter[@type="INSTRUCTION"]/@covered)' "$COVERAGE_FILE")
             MISSED=$(xmllint --xpath 'string(//counter[@type="INSTRUCTION"]/@missed)' "$COVERAGE_FILE")
             TOTAL=$((COVERED + MISSED))
