@@ -7,7 +7,10 @@ import org.project.quitsmoking.features.health.data.datasource.HealthDataSource
 import org.project.quitsmoking.features.health.data.datasource.IHealthDataSource
 import org.project.quitsmoking.features.health.data.repository.HealthRepository
 import org.project.quitsmoking.features.health.data.repository.IHealthRepository
-
+import org.project.quitsmoking.features.overview.data.datasource.IOverViewDiskDataSource
+import org.project.quitsmoking.features.overview.data.datasource.OverviewDiskDataSource
+import org.project.quitsmoking.features.overview.data.repository.IOverviewRepository
+import org.project.quitsmoking.features.overview.data.repository.OverviewRepository
 import org.project.quitsmoking.features.settings.data.datasource.ISettingsDiskDataSource
 import org.project.quitsmoking.features.settings.data.datasource.SettingsDiskDataSource
 import org.project.quitsmoking.features.settings.data.repository.ISettingsRepository
@@ -19,4 +22,7 @@ val repositoryModule = module {
 
     singleOf(::HealthDataSource) { bind<IHealthDataSource>() }
     singleOf(::HealthRepository) { bind<IHealthRepository>() }
+
+    singleOf(::OverviewDiskDataSource) { bind<IOverViewDiskDataSource>() }
+    singleOf(::OverviewRepository) { bind<IOverviewRepository>() }
 }
