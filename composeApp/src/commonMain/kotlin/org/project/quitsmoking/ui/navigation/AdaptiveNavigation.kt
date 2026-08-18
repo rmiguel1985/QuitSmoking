@@ -20,7 +20,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import org.project.quitsmoking.features.about.AboutScreen
 import org.project.quitsmoking.features.health.ui.HealthScreen
-import org.project.quitsmoking.features.overview.OverviewScreen
+import org.project.quitsmoking.features.overview.ui.OverviewScreen
 import org.project.quitsmoking.features.settings.ui.SettingsScreen
 import org.project.quitsmoking.ui.navigation.bottom_navigation_bar.NavigationItem
 import org.project.quitsmoking.ui.navigation.bottom_navigation_bar.navigationBar
