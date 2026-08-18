@@ -5,6 +5,33 @@
     <string name="tab_settings">Configuración</string>
     <string name="tab_about">Acerca de</string>
 
+    <!-- About Screen -->
+    <string name="about_title_text">Sobre</string>
+    <string name="about_mission_title">Nuestra misión</string>
+    <string name="about_mission_description">Esta aplicación fue creada para ayudar a las personas a dejar de fumar, haciendo un seguimiento de su progreso en la recuperación de la salud, mostrando los ahorros y ofreciendo motivación para mantenerse sin fumar.</string>
+
+    <string name="about_disclaimer_title">Aviso legal</string>
+    <string name="about_disclaimer_description">Esta aplicación no sustituye el asesoramiento, diagnóstico ni tratamiento médico profesional. Consulta a tu médico antes de tomar decisiones relacionadas con tu salud.</string>
+
+    <string name="about_developer_title">Desarrollador</string>
+    <string name="about_developer_description">Creado con ❤️ por Ruben Miguel Corcoba.</string>
+
+    <string name="about_contact_title">Contacto</string>
+    <string name="about_contact_description">Para comentarios o soporte, escribe a:</string>
+
+    <string name="about_project_title">Sitio web del proyecto</string>
+    <string name="about_project_link_text">Visita nuestro sitio web</string>
+
+    <string name="about_original_title">Proyecto original</string>
+    <string name="about_original_description">Esta aplicación está inspirada y basada en el trabajo del proyecto de código abierto creado por scoute-dich.</string>
+    <string name="about_original_link_text">Ver el proyecto original archivado en GitHub</string>
+
+    <string name="about_license_title">Licencia</string>
+    <string name="about_license_description">Esta aplicación está licenciada bajo la Licencia Pública General GNU v3.0 (GPL-3.0). Puedes usarla, modificarla y distribuirla bajo los términos de esta licencia.</string>
+    <string name="about_license_link_text">Texto completo de la licencia</string>
+
+    <string name="about_version_text">Versión %1$s</string>
+
     <!-- Settings Screen -->
     <string name="settings_title_text">Configuración</string>
 

@@ -5,6 +5,33 @@
     <string name="tab_settings">Settings</string>
     <string name="tab_about">About</string>
 
+    <!-- About Screen -->
+    <string name="about_title_text">About</string>
+    <string name="about_mission_title">Our Mission</string>
+    <string name="about_mission_description">This app was created to help people quit smoking by tracking their health recovery progress, visualizing savings, and offering motivation to stay smoke-free.</string>
+
+    <string name="about_disclaimer_title">Disclaimer</string>
+    <string name="about_disclaimer_description">This app is not a substitute for professional medical advice, diagnosis, or treatment. Please consult your doctor before making decisions related to your health.</string>
+
+    <string name="about_developer_title">Developer</string>
+    <string name="about_developer_description">Created with ❤️ by Ruben Miguel Corcoba.</string>
+
+    <string name="about_contact_title">Contact</string>
+    <string name="about_contact_description">For feedback or support, reach out to:</string>
+
+    <string name="about_project_title">Project Website</string>
+    <string name="about_project_link_text">Visit our website</string>
+
+    <string name="about_original_title">Original Project</string>
+    <string name="about_original_description">This app is inspired and based on work from the open-source project created by scoute-dich.</string>
+    <string name="about_original_link_text">View original archived GitHub project</string>
+
+    <string name="about_license_title">License</string>
+    <string name="about_license_description">This app is licensed under the GNU General Public License v3.0 (GPL-3.0). You are free to use, modify, and distribute it under the terms of this license.</string>
+    <string name="about_license_link_text">Full license text</string>
+
+    <string name="about_version_text">Version %1$s</string>
+
     <!-- Settings Screen -->
     <string name="settings_title_text">Settings</string>
 

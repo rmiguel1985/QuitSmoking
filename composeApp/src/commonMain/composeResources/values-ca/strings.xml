@@ -5,6 +5,33 @@
     <string name="tab_settings">Configuració</string>
     <string name="tab_about">Quant a</string>
 
+    <!-- About Screen -->
+    <string name="about_title_text">Quant a</string>
+    <string name="about_mission_title">La nostra missió</string>
+    <string name="about_mission_description">Aquesta aplicació ha estat creada per ajudar les persones a deixar de fumar fent un seguiment del seu progrés de recuperació de la salut, visualitzant els estalvis i oferint motivació per mantenir-se sense fumar.</string>
+
+    <string name="about_disclaimer_title">Avís legal</string>
+    <string name="about_disclaimer_description">Aquesta aplicació no substitueix l’assessorament, diagnòstic o tractament mèdic professional. Si us plau, consulteu el vostre metge abans de prendre decisions relacionades amb la vostra salut.</string>
+
+    <string name="about_developer_title">Desenvolupador</string>
+    <string name="about_developer_description">Creat amb ❤️ per Ruben Miguel Corcoba.</string>
+
+    <string name="about_contact_title">Contacte</string>
+    <string name="about_contact_description">Per a comentaris o assistència, contacteu amb:</string>
+
+    <string name="about_project_title">Lloc web del projecte</string>
+    <string name="about_project_link_text">Visita el nostre lloc web</string>
+
+    <string name="about_original_title">Projecte original</string>
+    <string name="about_original_description">Aquesta aplicació s’inspira i es basa en la feina del projecte de codi obert creat per scoute-dich.</string>
+    <string name="about_original_link_text">Veure el projecte original arxivat a GitHub</string>
+
+    <string name="about_license_title">Llicència</string>
+    <string name="about_license_description">Aquesta aplicació està sota la Llicència Pública General GNU v3.0 (GPL-3.0). Podeu utilitzar-la, modificar-la i distribuir-la segons els termes d’aquesta llicència.</string>
+    <string name="about_license_link_text">Text complet de la llicència</string>
+
+    <string name="about_version_text">Versió %1$s</string>
+
     <!-- Settings Screen -->
     <string name="settings_title_text">Configuració</string>
 
