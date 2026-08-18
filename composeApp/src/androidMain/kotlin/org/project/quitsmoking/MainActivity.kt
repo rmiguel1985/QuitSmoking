@@ -6,20 +6,27 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import io.kmpbits.splash.SplashActivity
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+class MainActivity : SplashActivity() {
+    override suspend fun isReady(): Boolean {
+        return true
+    }
+
+    override fun onFinished() {
+        setContent { App() }
+    }
+
+    override fun onPreCreate() {
+        enableEdgeToEdge()
+    }
+
+    /*override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
         setContent {
             App()
         }
-    }
-}
-
-@Preview
-@Composable
-fun AppAndroidPreview() {
-    App()
+    }*/
 }

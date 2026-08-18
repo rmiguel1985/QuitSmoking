@@ -4,6 +4,7 @@ agp = "8.11.2"
 android-compileSdk = "36"
 android-minSdk = "24"
 android-targetSdk = "36"
+coreSplashscreen = "1.2.0"
 kotlin = "2.2.20"
 
 # DateTime
@@ -54,8 +55,12 @@ turbine = "1.2.1"
 # Kover
 kover = "0.9.4"
 
+# Spalsh
+kmpSplash = "1.4.2"
+
 [libraries]
 # Kotlin
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-testJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 junit = { module = "junit:junit", version.ref = "junit" }
@@ -102,6 +107,9 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 # Turbine
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
+#Splash
+kmpSplash-runtime = { module = "io.github.kmpbits:splash-runtime", version.ref = "kmpSplash" }
+
 [plugins]
 # Core Plugins
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -124,3 +132,6 @@ kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versio
 
 # Kover
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+
+# Splash
+kmpSplash = { id = "io.github.kmpbits.splash", version.ref = "kmpSplash" }
