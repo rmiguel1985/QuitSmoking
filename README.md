@@ -14,6 +14,17 @@ Whether on your phone or tablet, QuitSmoking provides an elegant, responsive int
 on your journey toward a healthier, smoke-free life.
 
 
+## Screenshots
+
+| Overview | Health |
+| :---: | :---: |
+| ![Overview](screenshots/overview.png) | ![Health](screenshots/health.png) |
+
+| Settings | Tablet Support |
+| :---: | :---: |
+| ![Settings](screenshots/settings.png) | ![Tablet](screenshots/tablet.png) |
+
+
 ## Features
 
 - **Track Your Progress:** see exactly how long you've been smoke-free, down to the minute. Watch your non-smoked cigarettes count grow.
@@ -22,6 +33,7 @@ on your journey toward a healthier, smoke-free life.
 - **Stay Motivated:** our mission is to help you quit for good by offering motivation and tracking your health recovery progress.
 - **Open Source & Native:** 100% written in **Kotlin**, built with **Compose Multiplatform**.
 - **Privacy-First:** All data is stored locally — no accounts, no tracking, no ads.
+- **Feedback & Support:** Reach out to **support.quit.smoking@protonmail.com**.
 
 
 
