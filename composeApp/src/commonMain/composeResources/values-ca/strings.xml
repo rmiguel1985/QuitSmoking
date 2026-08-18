@@ -5,6 +5,13 @@
     <string name="tab_settings">Configuració</string>
     <string name="tab_about">Quant a</string>
 
+    <!-- OverView Screen -->
+    <string name="overview_title_text">Resum</string>
+    <string name="overview_stop_smoking_text">Has deixat de fumar el:</string>
+    <string name="overview_not_smoked_since_text">No has fumat des de fa:</string>
+    <string name="overview_not_smoked_since_value">%1$s anys\n %2$s mesos\n %3$s dies\n %4$s hores\n %5$s minuts</string>
+    <string name="overview_title_saved">Has estalviat:</string>
+
     <!-- About Screen -->
     <string name="about_title_text">Quant a</string>
     <string name="about_mission_title">La nostra missió</string>
