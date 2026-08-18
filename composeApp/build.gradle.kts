@@ -1,6 +1,9 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import com.codingfeline.buildkonfig.compiler.FieldSpec
+import io.kmpbits.splash.ExitAnimation
+import io.kmpbits.splash.SplashColor
+import io.kmpbits.splash.SplashLogo
 import java.util.Properties
 import kotlin.apply
 
@@ -16,6 +19,17 @@ plugins {
     alias(libs.plugins.buildkonfig)
     alias(libs.plugins.mokkery)
     alias(libs.plugins.kover)
+
+    alias(libs.plugins.kmpSplash)
+}
+
+splashScreen {
+    backgroundColor = SplashColor.hex("#FBFAED")
+    backgroundColorNight = SplashColor.hex("#13140D")
+    logo = SplashLogo.resource("splash_logo.png")
+    logoDark = SplashLogo.resource("splash_logo_dark.png")
+    generateAppIcon = false
+    exitAnimation = ExitAnimation.FadeOut(300)
 }
 
 kotlin {
@@ -34,16 +48,17 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
+            implementation(libs.androidx.core.splashscreen)
         }
         commonMain.dependencies {
-            // 🎨 Compose Multiplatform
+            // Compose Multiplatform
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
@@ -80,12 +95,15 @@ kotlin {
             // Turbine
             implementation(libs.turbine)
 
-            //Material Design 3
+            // Material Design 3
             implementation(compose.material3)
             implementation(compose.material3AdaptiveNavigationSuite)
             implementation(compose.materialIconsExtended)
             implementation(compose.material3AdaptiveNavigationSuite)
             implementation(libs.material3.adaptive)
+
+            // Splash
+            implementation(libs.kmpSplash.runtime)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -175,3 +193,4 @@ kover {
         }
     }
 }
+
