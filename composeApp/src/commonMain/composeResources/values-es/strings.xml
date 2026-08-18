@@ -5,6 +5,13 @@
     <string name="tab_settings">Configuración</string>
     <string name="tab_about">Acerca de</string>
 
+    <!-- OverView Screen -->
+    <string name="overview_title_text">Resumen</string>
+    <string name="overview_stop_smoking_text">Dejaste de fumar el:</string>
+    <string name="overview_not_smoked_since_text">No has fumado desde hace:</string>
+    <string name="overview_not_smoked_since_value">%1$s años\n %2$s meses\n %3$s días\n %4$s horas\n %5$s minutos</string>
+    <string name="overview_title_saved">Ahorrado:</string>
+
     <!-- About Screen -->
     <string name="about_title_text">Sobre</string>
     <string name="about_mission_title">Nuestra misión</string>
