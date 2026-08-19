@@ -5,6 +5,7 @@ import dev.mokkery.every
 import dev.mokkery.everySuspend
 import dev.mokkery.mock
 import dev.mokkery.verify
+import dev.mokkery.verify.VerifyMode
 import dev.mokkery.verifySuspend
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
@@ -15,6 +16,7 @@ import org.project.quitsmoking.features.settings.domain.SettingsUseCase
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class SettingsUseCaseTest {
@@ -116,5 +118,46 @@ class SettingsUseCaseTest {
         // Then
         assertTrue(result.isSuccess)
         verifySuspend { repository.updateCigaretteCost(cost) }
+    }
+
+    @Test
+    fun `consumeFirstRun sets flag to false and returns true on first run`() = runTest {
+        // Given
+        every { repository.isFirstRun() } returns flowOf(true)
+        everySuspend { repository.setFirstRun(false) } returns Result.success(Unit)
+
+        // When
+        val result = useCase.consumeFirstRun()
+
+        // Then
+        assertTrue(result)
+        verifySuspend { repository.setFirstRun(false) }
+    }
+
+    @Test
+    fun `consumeFirstRun returns false and does not write when already consumed`() = runTest {
+        // Given
+        every { repository.isFirstRun() } returns flowOf(false)
+
+        // When
+        val result = useCase.consumeFirstRun()
+
+        // Then
+        assertFalse(result)
+        verifySuspend(VerifyMode.exactly(0)) { repository.setFirstRun(false) }
+    }
+
+    @Test
+    fun `consumeFirstRun returns false when writing the flag fails`() = runTest {
+        // Given
+        every { repository.isFirstRun() } returns flowOf(true)
+        everySuspend { repository.setFirstRun(false) } returns Result.failure(IllegalStateException())
+
+        // When
+        val result = useCase.consumeFirstRun()
+
+        // Then
+        assertFalse(result)
+        verifySuspend { repository.setFirstRun(false) }
     }
 }

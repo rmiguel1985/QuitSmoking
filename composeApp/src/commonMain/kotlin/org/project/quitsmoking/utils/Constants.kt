@@ -1,5 +1,6 @@
 package org.project.quitsmoking.utils
 
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.doublePreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
@@ -12,6 +13,7 @@ object PreferenceKeys {
         val CIGARETTES_PER_DAY = intPreferencesKey("preferences_smoke_habit_cigarettes_per_day")
         val MINUTES_PER_CIGARETTE = intPreferencesKey("preferences_smoke_habit_cigarettes_time")
         val COST_PER_CIGARETTE = doublePreferencesKey("preferences_cigarette_cost")
+        val IS_FIRST_RUN = booleanPreferencesKey("preferences_is_first_run")
 }
 
 object HealthRecoveryConstants {

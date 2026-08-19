@@ -13,4 +13,6 @@ interface ISettingsDiskDataSource {
     fun getDailyCigaretteCount(): Flow<Int>
     fun getMinutesPerCigarette(): Flow<Int>
     fun getCostPerCigarette(): Flow<Double>
+    fun isFirstRun(): Flow<Boolean>
+    suspend fun setFirstRun(isFirstRun: Boolean): Result<Unit>
 }

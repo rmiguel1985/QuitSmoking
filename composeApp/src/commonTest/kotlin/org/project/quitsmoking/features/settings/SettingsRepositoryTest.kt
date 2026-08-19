@@ -28,6 +28,7 @@ class SettingsRepositoryTest {
         every { diskDataSource.getQuitTime() } returns flowOf("10:00")
         every { diskDataSource.getDailyCigaretteCount() } returns flowOf(20)
         every { diskDataSource.getMinutesPerCigarette() } returns flowOf(5)
+        every { diskDataSource.isFirstRun() } returns flowOf(true)
 
         repository = SettingsRepository(diskDataSource)
     }
@@ -140,6 +141,35 @@ class SettingsRepositoryTest {
                     testCost
                 )
             }
+            assertEquals(expectedResult, result)
+        }
+
+    @Test
+    fun `isFirstRun returns flow from data source`() = runTest {
+        // Given
+        val expected = true
+
+        // When
+        repository.isFirstRun().test {
+
+            // Then
+            assertEquals(expected, awaitItem())
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `setFirstRun fun returns success and call data datasource with expected values only once`() =
+        runTest {
+            // Given
+            val expectedResult = Result.success(Unit)
+            everySuspend { diskDataSource.setFirstRun(false) } returns expectedResult
+
+            // When
+            val result = repository.setFirstRun(false)
+
+            // Then
+            verifySuspend(VerifyMode.exactly(1)) { diskDataSource.setFirstRun(false) }
             assertEquals(expectedResult, result)
         }
 }

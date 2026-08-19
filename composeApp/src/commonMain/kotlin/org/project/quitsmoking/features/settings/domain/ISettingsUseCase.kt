@@ -10,4 +10,5 @@ interface ISettingsUseCase {
     suspend fun setNumberOfCigarettes(numberOfCigarettes: Int): Result<Unit>
     suspend fun seMinutesPerCigarette(minutesPerCigarette: Int): Result<Unit>
     suspend fun setCigaretteCost(cost: Double): Result<Unit>
+    suspend fun consumeFirstRun(): Boolean
 }
