@@ -54,6 +54,7 @@
     <string name="settings_error_saving_cigarettes">Error al guardar el número de cigarrillos</string>
     <string name="settings_error_saving_time">Error al guardar la hora</string>
     <string name="settings_error_saving_date">Error al guardar la fecha</string>
+    <string name="settings_first_run_banner">Para empezar a utilizar la aplicación, añade la fecha y la hora en que dejaste de fumar, tus hábitos de consumo y los costes.</string>
 
     <!-- Health Screen -->
     <string name="health_title_text">Salud</string>

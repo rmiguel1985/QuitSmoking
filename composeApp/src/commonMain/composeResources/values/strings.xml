@@ -54,6 +54,7 @@
     <string name="settings_error_saving_cigarettes">Error saving number of cigarettes</string>
     <string name="settings_error_saving_time">Error saving time</string>
     <string name="settings_error_saving_date">Error saving date</string>
+    <string name="settings_first_run_banner">To start using the app, please add your quit date, time, smoke habits, and costs.</string>
 
     <!-- Health Screen -->
     <string name="health_title_text">Health</string>
