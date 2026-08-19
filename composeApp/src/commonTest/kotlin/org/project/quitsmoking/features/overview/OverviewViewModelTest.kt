@@ -16,18 +16,7 @@ import kotlin.test.assertEquals
 @OptIn(ExperimentalCoroutinesApi::class)
 class OverviewViewModelTest {
 
-    private val initialTestOverview = OverviewModel(
-        date = "__",
-        time = "__",
-        notSmokedSinceDays = "0",
-        notSmokedSinceYears = "0",
-        notSmokedSinceHours = "0",
-        notSmokedSinceMinutes = "0",
-        notSmokedSinceMonths = "0",
-        savedCigarettes = 1,
-        savedMoney = 0.0,
-        savedTime = 0.0,
-    )
+    private val initialTestOverview = OverviewModel()
 
     private val testOverview = OverviewModel(
         date = "2022-11-28",

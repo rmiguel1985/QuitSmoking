@@ -25,6 +25,8 @@ class OverviewUseCase @OptIn(ExperimentalTime::class) constructor(
     override fun getStatistics(): Flow<OverviewModel> =
         repository.statistics.map { statistics ->
 
+            if (statistics.quitTimestamp == 0L) return@map OverviewModel()
+
             val currentZone = TimeZone.currentSystemDefault()
 
             val stopSmokingDate = Instant.fromEpochMilliseconds(statistics.quitTimestamp)

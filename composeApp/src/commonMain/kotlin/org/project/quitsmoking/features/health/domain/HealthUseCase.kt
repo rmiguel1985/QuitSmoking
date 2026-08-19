@@ -38,6 +38,8 @@ class HealthUseCase(
             repository.getQuitDate(),
             repository.getQuitTime(),
         ) { date, time ->
+            if (date == 0L) return@combine HealthModel()
+
             val currentZone = TimeZone.currentSystemDefault()
 
             val stopSmokingLocalDate = Instant.fromEpochMilliseconds(date)
