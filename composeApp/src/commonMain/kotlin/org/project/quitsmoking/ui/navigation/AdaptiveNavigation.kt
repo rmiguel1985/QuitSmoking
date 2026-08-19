@@ -10,26 +10,45 @@ import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffo
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffoldDefaults
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import org.koin.compose.koinInject
 import org.project.quitsmoking.features.about.AboutScreen
 import org.project.quitsmoking.features.health.ui.HealthScreen
 import org.project.quitsmoking.features.overview.ui.OverviewScreen
+import org.project.quitsmoking.features.settings.domain.ISettingsUseCase
 import org.project.quitsmoking.features.settings.ui.SettingsScreen
 import org.project.quitsmoking.ui.navigation.bottom_navigation_bar.NavigationItem
 import org.project.quitsmoking.ui.navigation.bottom_navigation_bar.navigationBar
 
 @Composable
 fun AdaptiveNavigation() {
-
+    val settingsUseCase = koinInject<ISettingsUseCase>()
     val navController = rememberNavController()
     val navBackStackEntry = navController.currentBackStackEntryAsState()
+    var showFirstRunBanner by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        if (settingsUseCase.consumeFirstRun()) {
+            showFirstRunBanner = true
+            navController.navigate(AppDestination.Settings) {
+                popUpTo(navController.graph.findStartDestination().id) {
+                    saveState = true
+                }
+                launchSingleTop = true
+                restoreState = true
+            }
+        }
+    }
 
     val currentNavigationItem by remember(navBackStackEntry) {
         derivedStateOf {
@@ -109,7 +128,7 @@ fun AdaptiveNavigation() {
                 HealthScreen()
             }
             composable<AppDestination.Settings> {
-                SettingsScreen()
+                SettingsScreen(showFirstRunBanner = showFirstRunBanner)
             }
             composable<AppDestination.About> {
                 AboutScreen()

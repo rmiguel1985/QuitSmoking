@@ -13,4 +13,6 @@ interface ISettingsRepository {
     suspend fun updateDailyCigaretteCount(numberOfCigarettes: Int): Result<Unit>
     suspend fun updateMinutesPerCigarette(minutesPerCigarette: Int): Result<Unit>
     suspend fun updateCigaretteCost(cost: Double): Result<Unit>
+    fun isFirstRun(): Flow<Boolean>
+    suspend fun setFirstRun(isFirstRun: Boolean): Result<Unit>
 }

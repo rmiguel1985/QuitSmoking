@@ -1,6 +1,7 @@
 package org.project.quitsmoking.features.settings.domain
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import org.project.quitsmoking.features.settings.data.model.SettingsModel
 import org.project.quitsmoking.features.settings.data.repository.ISettingsRepository
 
@@ -21,4 +22,10 @@ class SettingsUseCase(private val repository: ISettingsRepository) : ISettingsUs
 
     override suspend fun setCigaretteCost(cost: Double): Result<Unit> =
         repository.updateCigaretteCost(cost)
+
+    override suspend fun consumeFirstRun(): Boolean {
+        val isFirstRun = repository.isFirstRun().first()
+        if (!isFirstRun) return false
+        return repository.setFirstRun(false).isSuccess
+    }
 }

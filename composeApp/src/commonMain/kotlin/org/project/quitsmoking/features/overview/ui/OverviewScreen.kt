@@ -75,12 +75,14 @@ fun OverviewScreen() {
                 text = stringResource(Res.string.overview_stop_smoking_text),
                 style = MaterialTheme.typography.titleMedium.copy(color = highlightColor)
             )
-            Text(
-                text = "${statistic.date}\n${statistic.time}",
-                style = MaterialTheme.typography.bodyLarge,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = padding_4)
-            )
+            if (statistic.date.isNotEmpty()) {
+                Text(
+                    text = "${statistic.date}\n${statistic.time}",
+                    style = MaterialTheme.typography.bodyLarge,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(top = padding_4)
+                )
+            }
 
             Spacer(modifier = Modifier.height(padding_32))
 

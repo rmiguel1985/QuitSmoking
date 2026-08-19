@@ -16,12 +16,14 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.project.quitsmoking.utils.PreferenceKeys.CIGARETTES_PER_DAY
 import org.project.quitsmoking.utils.PreferenceKeys.COST_PER_CIGARETTE
+import org.project.quitsmoking.utils.PreferenceKeys.IS_FIRST_RUN
 import org.project.quitsmoking.utils.PreferenceKeys.MINUTES_PER_CIGARETTE
 import org.project.quitsmoking.utils.PreferenceKeys.STOP_DATE_TIMESTAMP
 import org.project.quitsmoking.utils.PreferenceKeys.STOP_TIME
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class SettingsDiskDataSourceTest {
@@ -184,6 +186,36 @@ class SettingsDiskDataSourceTest {
         val result = dataSource.setCigaretteCost(cost)
 
         // Then
+        assertTrue(result.isSuccess)
+        verifySuspend { dataStore.updateData(any()) }
+    }
+
+    @Test
+    fun `isFirstRun returns true when key does not exist`() = runTest {
+        val preferences = preferencesOf()
+        every { dataStore.data } returns flowOf(preferences)
+
+        val result = dataSource.isFirstRun().first()
+
+        assertTrue(result)
+    }
+
+    @Test
+    fun `isFirstRun returns stored value when key exists`() = runTest {
+        val preferences = preferencesOf(IS_FIRST_RUN to false)
+        every { dataStore.data } returns flowOf(preferences)
+
+        val result = dataSource.isFirstRun().first()
+
+        assertFalse(result)
+    }
+
+    @Test
+    fun `setFirstRun calls edit successfully`() = runTest {
+        everySuspend { dataStore.updateData(any()) } calls { preferencesOf(IS_FIRST_RUN to false) }
+
+        val result = dataSource.setFirstRun(false)
+
         assertTrue(result.isSuccess)
         verifySuspend { dataStore.updateData(any()) }
     }

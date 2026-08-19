@@ -54,6 +54,7 @@
     <string name="settings_error_saving_cigarettes">Error en desar el nombre de cigarrets</string>
     <string name="settings_error_saving_time">Error en desar l'hora</string>
     <string name="settings_error_saving_date">Error en desar la data</string>
+    <string name="settings_first_run_banner">Per començar a utilitzar l'aplicació, afegeix la data i l'hora en què vas deixar de fumar, els teus hàbits de consum i els costos.</string>
 
     <!-- Health Screen -->
     <string name="health_title_text">Salut</string>

@@ -2,15 +2,12 @@ package org.project.quitsmoking.features.settings.data.datasource
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.doublePreferencesKey
 import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.intPreferencesKey
-import androidx.datastore.preferences.core.longPreferencesKey
-import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.project.quitsmoking.utils.PreferenceKeys.CIGARETTES_PER_DAY
 import org.project.quitsmoking.utils.PreferenceKeys.COST_PER_CIGARETTE
+import org.project.quitsmoking.utils.PreferenceKeys.IS_FIRST_RUN
 import org.project.quitsmoking.utils.PreferenceKeys.MINUTES_PER_CIGARETTE
 import org.project.quitsmoking.utils.PreferenceKeys.STOP_DATE_TIMESTAMP
 import org.project.quitsmoking.utils.PreferenceKeys.STOP_TIME
@@ -69,6 +66,16 @@ class SettingsDiskDataSource(private val dataStore: DataStore<Preferences>) :
     override suspend fun setCigaretteCost(cost: Double): Result<Unit> = runCatching {
         dataStore.edit { preferences ->
             preferences[COST_PER_CIGARETTE] = cost
+        }
+    }
+
+    override fun isFirstRun(): Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[IS_FIRST_RUN] ?: true
+    }
+
+    override suspend fun setFirstRun(isFirstRun: Boolean): Result<Unit> = runCatching {
+        dataStore.edit { preferences ->
+            preferences[IS_FIRST_RUN] = isFirstRun
         }
     }
 }

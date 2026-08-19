@@ -38,4 +38,9 @@ class SettingsRepository(private val diskDataSource: ISettingsDiskDataSource) :
 
     override suspend fun updateCigaretteCost(cost: Double): Result<Unit> =
         diskDataSource.setCigaretteCost(cost)
+
+    override fun isFirstRun(): Flow<Boolean> = diskDataSource.isFirstRun()
+
+    override suspend fun setFirstRun(isFirstRun: Boolean): Result<Unit> =
+        diskDataSource.setFirstRun(isFirstRun)
 }

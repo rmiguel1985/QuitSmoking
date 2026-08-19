@@ -1,7 +1,6 @@
 package org.project.quitsmoking.features.settings.ui
 
 import androidx.compose.foundation.clickable
-import androidx.compose.material.icons.filled.AccountBalanceWallet
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,8 +10,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBalanceWallet
 import androidx.compose.material.icons.filled.Event
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.SmokingRooms
 import androidx.compose.material.icons.filled.Timer
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -23,13 +25,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.currentCompositionContext
-import androidx.compose.runtime.currentCompositionLocalContext
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,19 +40,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import org.jetbrains.compose.resources.LocalResourceReader
-import org.project.quitsmoking.ui.components.TimePicker
-import org.project.quitsmoking.utils.AppLogger
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.project.quitsmoking.ui.components.CostsInputDialog
 import org.project.quitsmoking.ui.components.DatePicker
 import org.project.quitsmoking.ui.components.SmokingHabitsInputDialog
+import org.project.quitsmoking.ui.components.TimePicker
+import org.project.quitsmoking.utils.AppLogger
+import org.project.quitsmoking.ui.theme.blueLink
 import org.project.quitsmoking.ui.theme.orangeAccent
 import org.project.quitsmoking.ui.theme.padding_12
 import org.project.quitsmoking.ui.theme.padding_16
 import org.project.quitsmoking.ui.theme.padding_24
 import org.project.quitsmoking.ui.theme.padding_4
+import org.project.quitsmoking.ui.theme.padding_8
 import org.project.quitsmoking.utils.toLocalDate
 import quitsmoking.composeapp.generated.resources.Res
 import quitsmoking.composeapp.generated.resources.settings_costs_description
@@ -62,6 +64,7 @@ import quitsmoking.composeapp.generated.resources.settings_error_saving_cigarett
 import quitsmoking.composeapp.generated.resources.settings_error_saving_costs
 import quitsmoking.composeapp.generated.resources.settings_error_saving_date
 import quitsmoking.composeapp.generated.resources.settings_error_saving_time
+import quitsmoking.composeapp.generated.resources.settings_first_run_banner
 import quitsmoking.composeapp.generated.resources.settings_smoke_description
 import quitsmoking.composeapp.generated.resources.settings_smoke_title
 import quitsmoking.composeapp.generated.resources.settings_time_description
@@ -70,7 +73,7 @@ import quitsmoking.composeapp.generated.resources.settings_title_text
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen() {
+fun SettingsScreen(showFirstRunBanner: Boolean = false) {
     val settingsViewModel = koinViewModel<SettingsViewModel>()
     val settings by settingsViewModel.settings.collectAsStateWithLifecycle()
     val uiStateSettings by settingsViewModel.uiStateSettings.collectAsStateWithLifecycle()
@@ -174,6 +177,9 @@ fun SettingsScreen() {
         }
     ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
+            if (showFirstRunBanner && !settings.isConfigured) {
+                FirstRunInfoBanner()
+            }
             LazyColumn {
                 items(statisticsSettings) { setting ->
                     SettingsItem(setting, setting.onClick)
@@ -223,6 +229,35 @@ fun SettingsScreen() {
                     }
                 )
             }
+        }
+    }
+}
+
+@Composable
+private fun FirstRunInfoBanner() {
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = padding_16, vertical = padding_8),
+        color = MaterialTheme.colorScheme.blueLink.copy(alpha = 0.18f),
+        shape = RoundedCornerShape(padding_12)
+    ) {
+        Row(
+            modifier = Modifier.padding(padding_12),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                imageVector = Icons.Default.Info,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.blueLink,
+                modifier = Modifier.size(padding_24)
+            )
+            Spacer(modifier = Modifier.width(padding_12))
+            Text(
+                text = stringResource(Res.string.settings_first_run_banner),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface
+            )
         }
     }
 }
