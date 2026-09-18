@@ -30,10 +30,10 @@ import quitsmoking.composeapp.generated.resources.smoking_habits_dialog_title_te
 
 @Composable
 fun SmokingHabitsInputDialog(
-    initialCigarettesPerDay: String = "",
-    initialMinutesPerCigarette: String = "",
     onDismissRequest: () -> Unit,
-    onSave: (cigarettesPerDay: Int, minutesPerCigarette: Int) -> Unit
+    onSave: (cigarettesPerDay: Int, minutesPerCigarette: Int) -> Unit,
+    initialCigarettesPerDay: String = "",
+    initialMinutesPerCigarette: String = ""
 ) {
     var cigarettesPerDay by remember { mutableStateOf(initialCigarettesPerDay) }
     var minutesPerCigarette by remember { mutableStateOf(initialMinutesPerCigarette) }
@@ -43,10 +43,10 @@ fun SmokingHabitsInputDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
             TextButton(onClick = {
-                val cigs = cigarettesPerDay.toIntOrNull()
-                val minutes = minutesPerCigarette.toIntOrNull()
+                val cigs = cigarettesPerDay.toIntOrNull() ?: -1
+                val minutes = minutesPerCigarette.toIntOrNull() ?: -1
 
-                if (cigs != null && minutes != null && cigs >= 0 && minutes > 0) {
+                if (cigs >= 0 && minutes > 0) {
                     onSave(cigs, minutes)
                 } else {
                     isError = true

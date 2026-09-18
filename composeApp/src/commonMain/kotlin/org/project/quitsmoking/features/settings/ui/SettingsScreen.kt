@@ -54,7 +54,6 @@ import org.project.quitsmoking.ui.theme.padding_16
 import org.project.quitsmoking.ui.theme.padding_24
 import org.project.quitsmoking.ui.theme.padding_4
 import org.project.quitsmoking.ui.theme.padding_8
-import org.project.quitsmoking.utils.toLocalDate
 import quitsmoking.composeapp.generated.resources.Res
 import quitsmoking.composeapp.generated.resources.settings_costs_description
 import quitsmoking.composeapp.generated.resources.settings_costs_title
@@ -73,10 +72,11 @@ import quitsmoking.composeapp.generated.resources.settings_title_text
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(showFirstRunBanner: Boolean = false) {
-    val settingsViewModel = koinViewModel<SettingsViewModel>()
-    val settings by settingsViewModel.settings.collectAsStateWithLifecycle()
-    val uiStateSettings by settingsViewModel.uiStateSettings.collectAsStateWithLifecycle()
+fun SettingsScreen(
+    viewModel: SettingsViewModel = koinViewModel<SettingsViewModel>()
+) {
+    val settings by viewModel.settings.collectAsStateWithLifecycle()
+    val uiStateSettings by viewModel.uiStateSettings.collectAsStateWithLifecycle()
 
     var showDateDialog by remember { mutableStateOf(false) }
     var showTimeDialog by remember { mutableStateOf(false) }
@@ -92,21 +92,21 @@ fun SettingsScreen(showFirstRunBanner: Boolean = false) {
 
     LaunchedEffect(currentErrorMessage) {
         if (currentErrorMessage != null && errorMessageText != null) {
-            settingsViewModel.clearUiStateSettings()
+            viewModel.clearUiStateSettings()
             snackBarHostState.showSnackbar(errorMessageText)
         }
     }
 
     LaunchedEffect(currentSuccessMessage) {
         if (currentSuccessMessage != null && successMessageText != null) {
-            settingsViewModel.clearUiStateSettings()
+            viewModel.clearUiStateSettings()
             snackBarHostState.showSnackbar(successMessageText)
         }
     }
 
     DisposableEffect(key1 = Unit) {
         onDispose {
-            settingsViewModel.clearUiStateSettings()
+            viewModel.clearUiStateSettings()
         }
     }
 
@@ -177,8 +177,8 @@ fun SettingsScreen(showFirstRunBanner: Boolean = false) {
         }
     ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
-            if (showFirstRunBanner && !settings.isConfigured) {
-                FirstRunInfoBanner()
+            if (!settings.isConfigured) {
+                InfoBanner()
             }
             LazyColumn {
                 items(statisticsSettings) { setting ->
@@ -191,8 +191,7 @@ fun SettingsScreen(showFirstRunBanner: Boolean = false) {
                     initialDate = settings.quitTimestamp,
                     onDismiss = { showDateDialog = false }
                 ) { date ->
-                    settingsViewModel.setDate(date)
-                    AppLogger.d { "Selected date: ${date.toLocalDate()}" }
+                    viewModel.setDate(date)
                 }
             }
             if (showTimeDialog) {
@@ -202,7 +201,7 @@ fun SettingsScreen(showFirstRunBanner: Boolean = false) {
                     },
                     onDismiss = { showTimeDialog = false }
                 ) { time ->
-                    settingsViewModel.setTime(time)
+                    viewModel.setTime(time)
                     AppLogger.d { "Selected time: $time" }
                 }
             }
@@ -214,8 +213,8 @@ fun SettingsScreen(showFirstRunBanner: Boolean = false) {
                     onSave = { cigs, minutes ->
                         showCigaretteDialog = false
                         AppLogger.i { "Saved: $cigs cig/day, $minutes min/cig" }
-                        settingsViewModel.setNumberOfCigarettes(cigs)
-                        settingsViewModel.setCigarettesPerMinute(minutes)
+                        viewModel.setNumberOfCigarettes(cigs)
+                        viewModel.setCigarettesPerMinute(minutes)
                     }
                 )
             }
@@ -225,7 +224,7 @@ fun SettingsScreen(showFirstRunBanner: Boolean = false) {
                     onDismissRequest = { showCostsDialog = false },
                     onSave = { cost ->
                         showCostsDialog = false
-                        settingsViewModel.setCosts(cost)
+                        viewModel.setCosts(cost)
                     }
                 )
             }
@@ -234,7 +233,7 @@ fun SettingsScreen(showFirstRunBanner: Boolean = false) {
 }
 
 @Composable
-private fun FirstRunInfoBanner() {
+private fun InfoBanner() {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
