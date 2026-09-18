@@ -25,6 +25,9 @@ class SettingsViewModel(private val settingsUseCase: ISettingsUseCase) : ViewMod
                     _uiStateSettings.update { UiStateSettings(successMessage = SuccessMessage.SUCCESS_SAVED_COSTS) }
                 }
                 .onFailure { throwable ->
+                    AppLogger.e(throwable = throwable) {
+                        "Error saving costs"
+                    }
                     _uiStateSettings.update { UiStateSettings(errorMessage = ErrorMessage.ERROR_SAVING_COSTS) }
                 }
         }
@@ -53,6 +56,9 @@ class SettingsViewModel(private val settingsUseCase: ISettingsUseCase) : ViewMod
                     AppLogger.d { "Num of cigarettes saved successfully" }
                 }
                 .onFailure { throwable ->
+                    AppLogger.e(throwable = throwable) {
+                        "Error saving cigarettes"
+                    }
                     _uiStateSettings.update { UiStateSettings(errorMessage = ErrorMessage.ERROR_SAVING_CIGARETTES) }
                 }
         }
@@ -67,6 +73,9 @@ class SettingsViewModel(private val settingsUseCase: ISettingsUseCase) : ViewMod
                     AppLogger.d { "Date saved successfully" }
                 }
                 .onFailure { throwable ->
+                    AppLogger.e(throwable = throwable) {
+                        "Error saving date"
+                    }
                     _uiStateSettings.update { UiStateSettings(errorMessage = ErrorMessage.ERROR_SAVING_DATE) }
                 }
         }

@@ -22,8 +22,3 @@ fun String.getSplitTime(): Pair<Int, Int> {
 
     return hour to time
 }
-
-fun Long.minutesToDays(): Double {
-    val duration: Duration = this.toDuration(DurationUnit.MINUTES)
-    return duration.inWholeMinutes.toDouble() / (24.0 * 60.0)
-}
