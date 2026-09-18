@@ -37,6 +37,10 @@
     <string name="about_license_description">Esta aplicación está licenciada bajo la Licencia Pública General GNU v3.0 (GPL-3.0). Puedes usarla, modificarla y distribuirla bajo los términos de esta licencia.</string>
     <string name="about_license_link_text">Texto completo de la licencia</string>
 
+    <string name="about_donation">Donación</string>
+    <string name="about_donation_link_text">Donar</string>
+    <string name="about_donation_description">QuitSmoking es mantenida por un único desarrollador. Tu donación ayuda a cubrir los costes de desarrollo y garantiza que la aplicación siga recibiendo actualizaciones y mejoras.</string>
+
     <string name="about_version_text">Versión %1$s</string>
 
     <!-- Settings Screen -->
