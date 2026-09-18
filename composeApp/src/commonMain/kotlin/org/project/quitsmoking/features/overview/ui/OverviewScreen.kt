@@ -21,6 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -48,6 +49,7 @@ import quitsmoking.composeapp.generated.resources.overview_title_text
 fun OverviewScreen(viewModel: OverviewViewModel = koinViewModel<OverviewViewModel>()) {
     val highlightColor = MaterialTheme.colorScheme.orangeAccent
     val statistic by viewModel.statistic.collectAsStateWithLifecycle()
+    val isRefreshing by viewModel.isRefreshing.collectAsStateWithLifecycle()
 
     Scaffold(
         topBar = {
@@ -61,75 +63,82 @@ fun OverviewScreen(viewModel: OverviewViewModel = koinViewModel<OverviewViewMode
             )
         },
     ) { innerPadding ->
-        Column(
+        PullToRefreshBox(
+            isRefreshing = isRefreshing,
+            onRefresh = viewModel::refresh,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .verticalScroll(rememberScrollState()),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
         ) {
-            // Stopped smoking
-            Text(
-                text = stringResource(Res.string.overview_stop_smoking_text),
-                style = MaterialTheme.typography.titleMedium.copy(color = highlightColor)
-            )
-            if (statistic.date.isNotEmpty()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                // Stopped smoking
                 Text(
-                    text = "${statistic.date}\n${statistic.time}",
+                    text = stringResource(Res.string.overview_stop_smoking_text),
+                    style = MaterialTheme.typography.titleMedium.copy(color = highlightColor)
+                )
+                if (statistic.date.isNotEmpty()) {
+                    Text(
+                        text = "${statistic.date}\n${statistic.time}",
+                        style = MaterialTheme.typography.bodyLarge,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.padding(top = padding_4)
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(padding_32))
+
+                // Not smoked since
+                Text(
+                    text = stringResource(Res.string.overview_not_smoked_since_text),
+                    style = MaterialTheme.typography.titleMedium.copy(color = highlightColor)
+                )
+                Text(
+                    text = stringResource(
+                        Res.string.overview_not_smoked_since_value,
+                        statistic.notSmokedSinceYears,
+                        statistic.notSmokedSinceMonths,
+                        statistic.notSmokedSinceDays,
+                        statistic.notSmokedSinceHours,
+                        statistic.notSmokedSinceMinutes,
+                    ),
                     style = MaterialTheme.typography.bodyLarge,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(top = padding_4)
                 )
-            }
 
-            Spacer(modifier = Modifier.height(padding_32))
+                Spacer(modifier = Modifier.height(padding_32))
 
-            // Not smoked since
-            Text(
-                text = stringResource(Res.string.overview_not_smoked_since_text),
-                style = MaterialTheme.typography.titleMedium.copy(color = highlightColor)
-            )
-            Text(
-                text = stringResource(
-                    Res.string.overview_not_smoked_since_value,
-                    statistic.notSmokedSinceYears,
-                    statistic.notSmokedSinceMonths,
-                    statistic.notSmokedSinceDays,
-                    statistic.notSmokedSinceHours,
-                    statistic.notSmokedSinceMinutes,
-                ),
-                style = MaterialTheme.typography.bodyLarge,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = padding_4)
-            )
-
-            Spacer(modifier = Modifier.height(padding_32))
-
-            // Saved section
-            Text(
-                text = stringResource(Res.string.overview_title_saved),
-                style = MaterialTheme.typography.titleSmall.copy(color = highlightColor)
-            )
-
-            Spacer(modifier = Modifier.height(padding_8))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                SavedItem(
-                    icon = Icons.Default.SmokeFree,
-                    value = statistic.savedCigarettes.toString()
+                // Saved section
+                Text(
+                    text = stringResource(Res.string.overview_title_saved),
+                    style = MaterialTheme.typography.titleSmall.copy(color = highlightColor)
                 )
-                SavedItem(
-                    icon = Icons.Default.Wallet,
-                    value = CurrencyFormatter().format(
-                        amount = statistic.savedMoney,
-                        withCurrencySymbol = true
+
+                Spacer(modifier = Modifier.height(padding_8))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    SavedItem(
+                        icon = Icons.Default.SmokeFree,
+                        value = statistic.savedCigarettes.toString()
                     )
-                )
-                SavedItem(icon = Icons.Default.Timer, value = "${statistic.savedTime} h")
+                    SavedItem(
+                        icon = Icons.Default.Wallet,
+                        value = CurrencyFormatter().format(
+                            amount = statistic.savedMoney,
+                            withCurrencySymbol = true
+                        )
+                    )
+                    SavedItem(icon = Icons.Default.Timer, value = "${statistic.savedTime} h")
+                }
             }
         }
     }
