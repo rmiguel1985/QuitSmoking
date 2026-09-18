@@ -32,6 +32,9 @@ import quitsmoking.composeapp.generated.resources.about_developer_description
 import quitsmoking.composeapp.generated.resources.about_developer_title
 import quitsmoking.composeapp.generated.resources.about_disclaimer_description
 import quitsmoking.composeapp.generated.resources.about_disclaimer_title
+import quitsmoking.composeapp.generated.resources.about_donation
+import quitsmoking.composeapp.generated.resources.about_donation_description
+import quitsmoking.composeapp.generated.resources.about_donation_link_text
 import quitsmoking.composeapp.generated.resources.about_license_description
 import quitsmoking.composeapp.generated.resources.about_license_link_text
 import quitsmoking.composeapp.generated.resources.about_license_title
@@ -47,6 +50,8 @@ import quitsmoking.composeapp.generated.resources.about_version_text
 
 private const val CONTACT_EMAIL = "support.quit.smoking@protonmail.com"
 private const val PROJECT_URL = "https://quitsmoking.dev"
+
+private const val DONATION_URL = "https://www.paypal.com/donate/?business=FLH8XTY65RFKN&no_recurring=0&item_name=QuitSmoking+is+maintained+by+a+single+developer.+Donation+helps+cover+development+costs+%26+continued+updates+and+improvements.&currency_code=EUR"
 private const val ORIGINAL_PROJECT_URL = "https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/scoute-dich/QuitSmoking"
 private const val LICENSE_URL = "https://www.gnu.org/licenses/gpl-3.0.en.html"
 
@@ -89,6 +94,15 @@ fun AboutScreen() {
             Section(
                 title = stringResource(Res.string.about_developer_title),
                 body = stringResource(Res.string.about_developer_description)
+            )
+
+            Spacer(modifier = Modifier.height(padding_24))
+
+            Section(
+                title = stringResource(Res.string.about_donation),
+                body = stringResource(Res.string.about_donation_description),
+                link = DONATION_URL,
+                linkText = stringResource(Res.string.about_donation_link_text)
             )
 
             Spacer(modifier = Modifier.height(padding_24))
