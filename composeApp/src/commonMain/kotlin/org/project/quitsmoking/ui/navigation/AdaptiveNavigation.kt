@@ -35,11 +35,9 @@ fun AdaptiveNavigation() {
     val settingsUseCase = koinInject<ISettingsUseCase>()
     val navController = rememberNavController()
     val navBackStackEntry = navController.currentBackStackEntryAsState()
-    var showFirstRunBanner by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         if (settingsUseCase.consumeFirstRun()) {
-            showFirstRunBanner = true
             navController.navigate(AppDestination.Settings) {
                 popUpTo(navController.graph.findStartDestination().id) {
                     saveState = true
@@ -128,7 +126,7 @@ fun AdaptiveNavigation() {
                 HealthScreen()
             }
             composable<AppDestination.Settings> {
-                SettingsScreen(showFirstRunBanner = showFirstRunBanner)
+                SettingsScreen()
             }
             composable<AppDestination.About> {
                 AboutScreen()
