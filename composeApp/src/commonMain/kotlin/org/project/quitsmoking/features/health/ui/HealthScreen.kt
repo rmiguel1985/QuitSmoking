@@ -16,6 +16,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -68,6 +69,7 @@ fun HealthScreen(
     healthViewModel: HealthViewModel = koinViewModel<HealthViewModel>()
 ) {
     val health by healthViewModel.healthStats.collectAsStateWithLifecycle()
+    val isRefreshing by healthViewModel.isRefreshing.collectAsStateWithLifecycle()
 
     val healthItems = remember(health) {
         getHealthItems(health)
@@ -85,15 +87,21 @@ fun HealthScreen(
             )
         },
     ) { innerPadding ->
-        LazyColumn(
+        PullToRefreshBox(
+            isRefreshing = isRefreshing,
+            onRefresh = healthViewModel::refresh,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding),
-            contentPadding = PaddingValues(padding_16),
-            verticalArrangement = Arrangement.spacedBy(padding_16)
+                .padding(innerPadding)
         ) {
-            items(healthItems) { item ->
-                HealthItemCard(item)
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = PaddingValues(padding_16),
+                verticalArrangement = Arrangement.spacedBy(padding_16)
+            ) {
+                items(healthItems) { item ->
+                    HealthItemCard(item)
+                }
             }
         }
     }
