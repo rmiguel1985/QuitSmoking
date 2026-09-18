@@ -45,10 +45,9 @@ import quitsmoking.composeapp.generated.resources.overview_title_text
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OverviewScreen() {
+fun OverviewScreen(viewModel: OverviewViewModel = koinViewModel<OverviewViewModel>()) {
     val highlightColor = MaterialTheme.colorScheme.orangeAccent
-    val overviewViewModel = koinViewModel<OverviewViewModel>()
-    val statistic by overviewViewModel.statistic.collectAsStateWithLifecycle()
+    val statistic by viewModel.statistic.collectAsStateWithLifecycle()
 
     Scaffold(
         topBar = {

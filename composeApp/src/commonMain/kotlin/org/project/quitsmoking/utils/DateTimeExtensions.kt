@@ -2,19 +2,10 @@ package org.project.quitsmoking.utils
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TimePickerState
-import kotlinx.datetime.Instant
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
 import kotlin.OptIn
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
-import kotlin.time.ExperimentalTime
 import kotlin.time.toDuration
-
-@OptIn(ExperimentalTime::class)
-fun Long.toLocalDate(): String =
-Instant.fromEpochMilliseconds(this)
-    .toLocalDateTime(TimeZone.currentSystemDefault()).date.toString()
 
 @OptIn(ExperimentalMaterial3Api::class)
 fun TimePickerState.toFormatedTime(): String {

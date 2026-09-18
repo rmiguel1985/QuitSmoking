@@ -27,9 +27,9 @@ import quitsmoking.composeapp.generated.resources.costs_dialog_title_text
 
 @Composable
 fun CostsInputDialog(
-    initialCost: String = "",
     onDismissRequest: () -> Unit,
-    onSave: (cost: Double) -> Unit
+    onSave: (cost: Double) -> Unit,
+    initialCost: String = ""
 ) {
     var cigarettesPerDay by remember { mutableStateOf(initialCost) }
     var isError by remember { mutableStateOf(false) }

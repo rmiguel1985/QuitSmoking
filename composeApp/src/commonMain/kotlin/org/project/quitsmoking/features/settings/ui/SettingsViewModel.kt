@@ -82,7 +82,9 @@ class SettingsViewModel(private val settingsUseCase: ISettingsUseCase) : ViewMod
                 }
                 .onFailure { throwable ->
                     _uiStateSettings.update { UiStateSettings(errorMessage = ErrorMessage.ERROR_SAVING_TIME) }
-                    AppLogger.e { "Error saving Time" }
+                    AppLogger.e(throwable = throwable) {
+                        "Error saving Time"
+                    }
                 }
         }
     }
