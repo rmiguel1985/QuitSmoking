@@ -44,18 +44,18 @@ jobs:
 
       # --- 2. Run Tests ---
       - name: Run Unit Tests
-        run: ./gradlew testDebugUnitTest
+        run: ./gradlew testPlayDebugUnitTest
 
       # --- 3. Build APK ---
       - name: Build Android Debug APK
-        run: ./gradlew assembleDebug
+        run: ./gradlew assemblePlayDebug
 
       # --- 3.1 Upload APK ---
       - name: Upload Android APK
         uses: actions/upload-artifact@v7
         with:
-          name: app-debug
-          path: composeApp/build/outputs/apk/debug/composeApp-debug.apk
+          name: app-play-debug
+          path: composeApp/build/outputs/apk/play/debug/composeApp-play-debug.apk
           retention-days: 5
 
       # --- 3.2 Maestro E2E Tests ---
@@ -84,7 +84,7 @@ jobs:
           emulator-boot-timeout: 600
           disable-animations: true
           script: |
-            adb install -r composeApp/build/outputs/apk/debug/composeApp-debug.apk
+            adb install -r composeApp/build/outputs/apk/play/debug/composeApp-play-debug.apk
             maestro test .maestro/ --format junit --output maestro-report.xml
 
       - name: Upload Maestro results
@@ -99,7 +99,7 @@ jobs:
 
       # --- 4. Check Android Lint ---
       - name: Run Android Lint
-        run: ./gradlew lintDebug
+        run: ./gradlew lintPlayDebug
 
       # --- 5. Generate Kover XML ---
       - name: Generate Kover XML
