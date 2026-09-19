@@ -64,6 +64,7 @@ Never disregard professional medical advice or delay in seeking it. If you have 
 
 Coming soon on:
 - **[Google Play](#)**
+- **[F-Droid](#)**
 - **[App Store](#)**
 - Or download directly from [GitHub Releases](#)
 
