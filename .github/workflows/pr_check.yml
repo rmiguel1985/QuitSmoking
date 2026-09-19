@@ -66,11 +66,15 @@ jobs:
           sudo udevadm trigger --name-match=kvm
 
       - name: Install Maestro CLI
+        env:
+          MAESTRO_CLI_NO_ANALYTICS: "1"
         run: |
           curl -Ls "https://get.maestro.mobile.dev" | bash
           echo "$HOME/.maestro/bin" >> $GITHUB_PATH
 
       - name: Run Maestro E2E on emulator
+        env:
+          MAESTRO_CLI_NO_ANALYTICS: "1"
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 34

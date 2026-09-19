@@ -6,8 +6,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScope
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextOverflow
 
 fun NavigationSuiteScope.navigationBar(
@@ -20,7 +18,6 @@ fun NavigationSuiteScope.navigationBar(
         }
 
         item(
-            modifier = Modifier.testTag("nav_${navigationItem.name.lowercase()}"),
             selected = selected,
             alwaysShowLabel = false,
             onClick = { onItemClick(navigationItem) },
