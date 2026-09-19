@@ -18,11 +18,11 @@ jobs:
     steps:
       # --- Checkout Repository ---
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # --- JDK Setup ---
       - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
           java-version: '17'
           distribution: 'zulu'
@@ -30,7 +30,7 @@ jobs:
 
       # --- Validate Gradle Wrapper ---
       - name: Validate Gradle Wrapper
-        uses: gradle/wrapper-validation-action@v2
+        uses: gradle/actions/wrapper-validation@v6
 
       # --- Gradlew Permissions ---
       - name: Grant execute permission for gradlew
@@ -52,7 +52,7 @@ jobs:
 
       # --- 3.1 Upload APK ---
       - name: Upload Android APK
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: app-debug
           path: composeApp/build/outputs/apk/debug/composeApp-debug.apk
@@ -89,7 +89,7 @@ jobs:
 
       - name: Upload Maestro results
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: maestro-results
           path: |
@@ -144,7 +144,7 @@ jobs:
       # --- 9. Upload Test & Lint Results (on failure) ---
       - name: Upload Test & Lint Results
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-results
           path: |
