@@ -1,0 +1,99 @@
+appId: org.project.quitsmoking
+tags:
+  - e2e
+---
+# =============================================================================
+# Full-recovery E2E test
+#
+# Sets a quit date > 15 years ago so every health milestone reaches 100%,
+# then verifies Overview statistics and Health progress.
+#
+# Assumptions:
+#   - Android emulator with en_US locale (date input format MM/DD/YYYY)
+#   - Device timezone matches the host (true for emulators using UTC)
+# =============================================================================
+
+# ── 1. Launch with clean state ───────────────────────────────────────────────
+# On first run the app auto-navigates to the Settings screen.
+- launchApp:
+    clearState: true
+
+# InfoBanner must be visible on first run (isConfigured == false)
+- assertVisible: "To start using the app, please add your quit date, time, smoke habits, and costs."
+
+# ── 2. Set quit date: January 1, 2011 ───────────────────────────────────────
+- tapOn: "Date"
+- tapOn: "Switch to text input mode"
+- eraseText: 10
+- inputText: "01012011"
+- tapOn: "OK"
+
+# ── 3. Set quit time: 00:00 ─────────────────────────────────────────────────
+# Clock face numbers are a single canvas — no individual accessibility nodes.
+# Just confirm the default 00:00; any non-blank value satisfies isConfigured.
+- tapOn: "Time"
+- tapOn: "OK"
+
+# ── 4. Set smoking habits: 20 cigs/day, 5 min/cig ──────────────────────────
+- tapOn: "Smoke habits"
+- tapOn: "Cigarettes per day"
+- eraseText: 5
+- inputText: "20"
+- tapOn: "Minutes per cigarette"
+- eraseText: 5
+- inputText: "5"
+- tapOn: "Save"
+
+# ── 5. Set costs: 0.35 per cigarette ────────────────────────────────────────
+- tapOn: "Costs"
+- tapOn: "Cigarette Cost"
+- eraseText: 5
+- inputText: "0.35"
+- tapOn: "Save"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# OVERVIEW SCREEN — verify persisted data and computed statistics
+# ══════════════════════════════════════════════════════════════════════════════
+- tapOn: "Overview"
+
+# Static labels (single-line Text composables — exact match works)
+- assertVisible: "Stopped smoking at:"
+- assertVisible: "Not smoked since:"
+- assertVisible: "Saved:"
+
+# Date + time are ONE multiline Text("2011-01-01\n00:00").
+# Maestro regex must match the full node text → use (?s) so . crosses \n.
+- assertVisible:
+    text: "(?s).*2011-01-01.*"
+- assertVisible:
+    text: "(?s).*00:00.*"
+
+# Dynamic values — computed at runtime to stay valid regardless of run date
+- runScript: scripts/calculate_overview.js
+
+# "Not smoked since" is also one multiline Text → (?s) wrapping
+- assertVisible:
+    text: "(?s).*${output.expectedYears} years.*"
+
+# Saved cigarettes and time are each their own single-line Text → exact match
+- assertVisible: "${output.expectedCigs}"
+- assertVisible: "${output.expectedTime}"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# HEALTH SCREEN — verify every milestone is 100 %
+# ══════════════════════════════════════════════════════════════════════════════
+# All 13 milestones use a progress = (elapsed / target).coerceIn(0..1) formula.
+# The longest target is HEART_ATTACK_15_YEARS = 5 475 days.
+# From Jan 1 2011 to today is > 5 700 days, so every milestone must be 1.0.
+#
+# Strategy: scroll to the LAST item (the 15-year heart-attack entry).
+# If its progress is 100%, all shorter milestones are mathematically ≥ 100%.
+- tapOn: "Health"
+
+- scrollUntilVisible:
+    element:
+      text: ".*barely higher.*15 years.*"
+    direction: DOWN
+
+- assertVisible:
+    text: "Congratulations.*100.*"
