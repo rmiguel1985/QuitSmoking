@@ -118,11 +118,22 @@ android {
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "org.project.quitsmoking"
+        applicationId = "dev.quitsmoking"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
+    }
+    flavorDimensions += "store"
+    productFlavors {
+        create("play") {
+            dimension = "store"
+            applicationId = "dev.quitsmoking.play"
+        }
+        create("fdroid") {
+            dimension = "store"
+            applicationId = "dev.quitsmoking.fdroid"
+        }
     }
     packaging {
         resources {
