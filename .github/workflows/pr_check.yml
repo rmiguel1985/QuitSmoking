@@ -58,6 +58,39 @@ jobs:
           path: composeApp/build/outputs/apk/debug/composeApp-debug.apk
           retention-days: 5
 
+      # --- 3.2 Maestro E2E Tests ---
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Install Maestro CLI
+        uses: dniHze/maestro-test-action@v1
+
+      - name: Run Maestro E2E on emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          arch: x86_64
+          profile: pixel_6
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
+          emulator-boot-timeout: 600
+          disable-animations: true
+          script: |
+            adb install -r composeApp/build/outputs/apk/debug/composeApp-debug.apk
+            maestro test .maestro/ --format junit --output maestro-report.xml
+
+      - name: Upload Maestro results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: maestro-results
+          path: |
+            maestro-report.xml
+            ~/.maestro/tests/**/*
+          retention-days: 5
+
       # --- 4. Check Android Lint ---
       - name: Run Android Lint
         run: ./gradlew lintDebug
