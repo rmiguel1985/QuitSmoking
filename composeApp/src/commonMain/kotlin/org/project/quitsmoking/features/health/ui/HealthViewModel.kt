@@ -2,6 +2,7 @@ package org.project.quitsmoking.features.health.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -19,6 +20,7 @@ class HealthViewModel(private val useCase: IHealthUseCase): ViewModel() {
     private val _isRefreshing = MutableStateFlow(false)
     val isRefreshing: StateFlow<Boolean> = _isRefreshing.asStateFlow()
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     val healthStats: StateFlow<HealthModel> = _refreshTrigger
         .flatMapLatest {
             useCase.getHealthStatistics()

@@ -54,7 +54,9 @@ tags:
 # ══════════════════════════════════════════════════════════════════════════════
 # OVERVIEW SCREEN — verify persisted data and computed statistics
 # ══════════════════════════════════════════════════════════════════════════════
-- tapOn: "Overview"
+# Use testTag id to avoid matching Android's system "Overview" (recent apps) button
+- tapOn:
+    id: "nav_overview"
 
 # Static labels (single-line Text composables — exact match works)
 - assertVisible: "Stopped smoking at:"
@@ -88,7 +90,8 @@ tags:
 #
 # Strategy: scroll to the LAST item (the 15-year heart-attack entry).
 # If its progress is 100%, all shorter milestones are mathematically ≥ 100%.
-- tapOn: "Health"
+- tapOn:
+    id: "nav_health"
 
 - scrollUntilVisible:
     element:
