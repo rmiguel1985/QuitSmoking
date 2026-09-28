@@ -11,6 +11,8 @@
     <string name="overview_not_smoked_since_text">Not smoked since:</string>
     <string name="overview_not_smoked_since_value">%1$s years\n %2$s months\n %3$s days\n %4$s hours\n %5$s minutes</string>
     <string name="overview_title_saved">Saved:</string>
+    <string name="overview_saved_time_minutes">%1$s min</string>
+    <string name="overview_saved_time_hours">%1$s h</string>
 
     <!-- About Screen -->
     <string name="about_title_text">About</string>
