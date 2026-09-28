@@ -10,5 +10,11 @@ data class OverviewModel(
     val savedCigarettes: Int = 0,
     val savedMoney: Double = 0.0,
     val savedTime: Double = 0.0,
+    val savedTimeUnit: SavedTimeUnit = SavedTimeUnit.Minutes,
     val notSmokedSinceMonths: String = "0"
 )
+
+enum class SavedTimeUnit {
+    Minutes,
+    Hours,
+}

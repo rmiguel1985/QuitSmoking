@@ -24,6 +24,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -31,6 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import org.project.quitsmoking.features.overview.domain.entities.SavedTimeUnit
 import org.project.quitsmoking.ui.theme.orangeAccent
 import org.project.quitsmoking.ui.theme.padding_24
 import org.project.quitsmoking.ui.theme.padding_32
@@ -40,6 +42,8 @@ import org.project.quitsmoking.utils.CurrencyFormatter
 import quitsmoking.composeapp.generated.resources.Res
 import quitsmoking.composeapp.generated.resources.overview_not_smoked_since_text
 import quitsmoking.composeapp.generated.resources.overview_not_smoked_since_value
+import quitsmoking.composeapp.generated.resources.overview_saved_time_hours
+import quitsmoking.composeapp.generated.resources.overview_saved_time_minutes
 import quitsmoking.composeapp.generated.resources.overview_stop_smoking_text
 import quitsmoking.composeapp.generated.resources.overview_title_saved
 import quitsmoking.composeapp.generated.resources.overview_title_text
@@ -50,6 +54,7 @@ fun OverviewScreen(viewModel: OverviewViewModel = koinViewModel<OverviewViewMode
     val highlightColor = MaterialTheme.colorScheme.orangeAccent
     val statistic by viewModel.statistic.collectAsStateWithLifecycle()
     val isRefreshing by viewModel.isRefreshing.collectAsStateWithLifecycle()
+    val currencyFormatter = remember { CurrencyFormatter() }
 
     Scaffold(
         topBar = {
@@ -132,12 +137,26 @@ fun OverviewScreen(viewModel: OverviewViewModel = koinViewModel<OverviewViewMode
                     )
                     SavedItem(
                         icon = Icons.Default.Wallet,
-                        value = CurrencyFormatter().format(
+                        value = currencyFormatter.format(
                             amount = statistic.savedMoney,
-                            withCurrencySymbol = true
+                            withCurrencySymbol = true,
                         )
                     )
-                    SavedItem(icon = Icons.Default.Timer, value = "${statistic.savedTime} h")
+                    SavedItem(
+                        icon = Icons.Default.Timer,
+                        value = stringResource(
+                            when (statistic.savedTimeUnit) {
+                                SavedTimeUnit.Minutes -> Res.string.overview_saved_time_minutes
+                                SavedTimeUnit.Hours -> Res.string.overview_saved_time_hours
+                            },
+                            currencyFormatter.format(
+                                amount = statistic.savedTime,
+                                withCurrencySymbol = false,
+                                minimumFractionDigits = 0,
+                                maximumFractionDigits = 2,
+                            ),
+                        )
+                    )
                 }
             }
         }
