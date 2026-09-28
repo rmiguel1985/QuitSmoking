@@ -4,13 +4,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
-import kotlinx.datetime.daysUntil
 import kotlinx.datetime.periodUntil
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 import org.project.quitsmoking.features.overview.domain.entities.OverviewModel
+import org.project.quitsmoking.features.overview.domain.entities.SavedTimeUnit
 import org.project.quitsmoking.features.overview.data.repository.IOverviewRepository
 import org.project.quitsmoking.utils.getSplitTime
+import kotlin.math.roundToInt
 import kotlin.math.truncate
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
@@ -43,12 +44,15 @@ class OverviewUseCase @OptIn(ExperimentalTime::class) constructor(
             )
 
             val instant = clock.now()
-
-            val periodSinceQuit = stopSmokingLocalDateTime.toInstant(currentZone)
-                .periodUntil(instant, currentZone)
-
-            val daysTotal = stopSmokingLocalDateTime.toInstant(currentZone)
-                .daysUntil(instant, currentZone)
+            val quitInstant = stopSmokingLocalDateTime.toInstant(currentZone)
+            val periodSinceQuit = quitInstant.periodUntil(instant, currentZone)
+            val elapsedDays = (instant - quitInstant).inWholeMilliseconds
+                .coerceAtLeast(0L) / MILLIS_PER_DAY
+            val (savedTime, savedTimeUnit) = calculateSavedTime(
+                timeSpendByCigarette = statistics.minutesPerCigarette.toDouble(),
+                numberOfCigarettes = statistics.dailyCigaretteCount.toDouble(),
+                elapsedDays = elapsedDays,
+            )
 
             OverviewModel(
                 date = stopSmokingDate.date.toString(),
@@ -59,39 +63,48 @@ class OverviewUseCase @OptIn(ExperimentalTime::class) constructor(
                 notSmokedSinceMinutes = periodSinceQuit.minutes.toString(),
                 savedCigarettes = calculateSavedCigarettes(
                     numberOfCigarettes = statistics.dailyCigaretteCount,
-                    numberOfDays = daysTotal
+                    elapsedDays = elapsedDays,
                 ),
                 savedMoney = calculateSavedMoney(
                     cigaretteCost = statistics.costPerCigarette,
-                    numberOfDays = daysTotal,
-                    numOfCigarettesPerDay = statistics.dailyCigaretteCount
+                    elapsedDays = elapsedDays,
+                    numOfCigarettesPerDay = statistics.dailyCigaretteCount,
                 ),
-                savedTime = calculateSavedTime(
-                    timeSpendByCigarette = statistics.minutesPerCigarette.toDouble(),
-                    numberOfCigarettes = statistics.dailyCigaretteCount.toDouble(),
-                    totalDays = daysTotal
-                ),
+                savedTime = savedTime,
+                savedTimeUnit = savedTimeUnit,
                 time = statistics.quitTime
             )
         }
 
     private fun calculateSavedMoney(
         cigaretteCost: Double,
-        numberOfDays: Int,
-        numOfCigarettesPerDay: Int
-    ) =
-        ((cigaretteCost * numOfCigarettesPerDay) * numberOfDays).truncateToTwoDecimals()
+        elapsedDays: Double,
+        numOfCigarettesPerDay: Int,
+    ) = ((cigaretteCost * numOfCigarettesPerDay) * elapsedDays).truncateToTwoDecimals()
 
-    private fun calculateSavedCigarettes(numberOfCigarettes: Int, numberOfDays: Int) =
-        numberOfCigarettes * numberOfDays
+    private fun calculateSavedCigarettes(
+        numberOfCigarettes: Int,
+        elapsedDays: Double,
+    ) = (numberOfCigarettes * elapsedDays).roundToInt()
 
     private fun calculateSavedTime(
         numberOfCigarettes: Double,
         timeSpendByCigarette: Double,
-        totalDays: Int
-    ): Double =
-        (((timeSpendByCigarette * numberOfCigarettes) * totalDays) / 60).truncateToTwoDecimals()
+        elapsedDays: Double,
+    ): Pair<Double, SavedTimeUnit> {
+        val savedMinutes = (timeSpendByCigarette * numberOfCigarettes) * elapsedDays
+        return if (savedMinutes >= MINUTES_PER_HOUR) {
+            (savedMinutes / MINUTES_PER_HOUR).truncateToTwoDecimals() to SavedTimeUnit.Hours
+        } else {
+            savedMinutes.truncateToTwoDecimals() to SavedTimeUnit.Minutes
+        }
+    }
 
     private fun Double.truncateToTwoDecimals(): Double =
         truncate(this * 100) / 100.0
+
+    private companion object {
+        const val MILLIS_PER_DAY = 86_400_000.0
+        const val MINUTES_PER_HOUR = 60.0
+    }
 }
