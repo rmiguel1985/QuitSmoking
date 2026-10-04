@@ -40,7 +40,8 @@ jobs:
       - name: Create local.properties
         run: |
           echo "isDebugBuild=true" >> local.properties
-          echo "appVersion=1.0.0" >> local.properties
+          echo "appVersion=${{ vars.APP_VERSION || '1.0.0' }}" >> local.properties
+          echo "versionCode=${{ vars.VERSION_CODE || '1' }}" >> local.properties
 
       # --- 2. Run Tests ---
       - name: Run Unit Tests

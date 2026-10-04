@@ -1,4 +1,3 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import com.codingfeline.buildkonfig.compiler.FieldSpec
 import io.kmpbits.splash.ExitAnimation
@@ -22,6 +21,16 @@ plugins {
 
     alias(libs.plugins.kmpSplash)
 }
+
+// Build values read once from local.properties (gitignored), with safe defaults so the build
+// still configures on a fresh clone / CI / F-Droid where the file or a key may be missing.
+val localProperties = Properties().apply {
+    val propsFile = rootProject.file("local.properties")
+    if (propsFile.exists()) propsFile.inputStream().use { load(it) }
+}
+val appVersion: String = localProperties.getProperty("appVersion", "1.0.0")
+val appVersionCode: Int = localProperties.getProperty("versionCode", "1").toInt()
+val isDebugBuild: String = localProperties.getProperty("isDebugBuild", "false")
 
 splashScreen {
     backgroundColor = SplashColor.hex("#FBFAED")
@@ -121,8 +130,8 @@ android {
         applicationId = "dev.quitsmoking"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = appVersionCode
+        versionName = appVersion
     }
     flavorDimensions += "store"
     productFlavors {
@@ -163,25 +172,9 @@ dependencies {
 buildkonfig {
     packageName = "org.project"
 
-    val localProperties =
-        Properties().apply {
-            val propsFile = rootProject.file("local.properties")
-            if (propsFile.exists()) {
-                load(propsFile.inputStream())
-            }
-        }
-
     defaultConfigs {
-        buildConfigField(
-            FieldSpec.Type.BOOLEAN,
-            "isDebugBuild",
-            localProperties["isDebugBuild"]?.toString(),
-        )
-        buildConfigField(
-            FieldSpec.Type.STRING,
-            "appVersion",
-            localProperties["appVersion"]?.toString(),
-        )
+        buildConfigField(FieldSpec.Type.BOOLEAN, "isDebugBuild", isDebugBuild)
+        buildConfigField(FieldSpec.Type.STRING, "appVersion", appVersion)
     }
 }
 
